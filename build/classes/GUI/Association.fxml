@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AssociationController">
+    <TableView fx:id="tableView" layoutX="7.0" layoutY="7.0" prefHeight="386.0" prefWidth="608.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="7.0">
+        <columns>
+            <TableColumn fx:id="idColumn" prefWidth="40.0" text="ID" />
+            <TableColumn fx:id="nomColumn" prefWidth="140.0" text="Nom" />
+            <TableColumn fx:id="adresseColumn" prefWidth="140.0" text="Adresse" />
+            <TableColumn fx:id="emailColumn" prefWidth="180.0" text="Email" />
+            <TableColumn fx:id="ribColumn" prefWidth="100.0" text="RIB" />
+        </columns>
+    </TableView>
+    <ComboBox fx:id="idComboBox" layoutX="705.0" layoutY="14.0" prefHeight="26.0" prefWidth="55.0" />
+    <TextField fx:id="fxNom" layoutX="633.0" layoutY="56.0" prefHeight="25.0" prefWidth="200.0" promptText="Nom" />
+    <TextField fx:id="fxAdresse" layoutX="633.0" layoutY="97.0" prefHeight="25.0" prefWidth="200.0" promptText="Adresse" />
+    <TextField fx:id="fxEmail" layoutX="633.0" layoutY="135.0" prefHeight="25.0" prefWidth="200.0" promptText="Email" />
+    <TextField fx:id="fxRib" layoutX="633.0" layoutY="173.0" prefHeight="25.0" prefWidth="200.0" promptText="RIB" />
+    <Button layoutX="630.0" layoutY="214.0" mnemonicParsing="false" onAction="#save" text="Ajouter" />
+    <Button layoutX="694.0" layoutY="214.0" mnemonicParsing="false" onAction="#update" text="Modifier" />
+    <Button layoutX="764.0" layoutY="214.0" mnemonicParsing="false" onAction="#delete" text="Supprimer" />
+</AnchorPane>
