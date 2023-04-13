@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.EditproduitController">
+   <children>
+      <Label layoutX="76.0" layoutY="76.0" text="nom" />
+      <Label layoutX="74.0" layoutY="115.0" text="description" />
+      <Label layoutX="77.0" layoutY="179.0" prefHeight="21.0" prefWidth="47.0" text="image" />
+      <Label layoutX="83.0" layoutY="228.0" text="prix" />
+      <Label layoutX="78.0" layoutY="281.0" text="nbr" />
+      <Label layoutX="74.0" layoutY="323.0" text="categorie" />
+      <ComboBox fx:id="cat" layoutX="148.0" layoutY="319.0" prefWidth="150.0" />
+      <TextField fx:id="nom" layoutX="148.0" layoutY="71.0" />
+      <TextField fx:id="desc" layoutX="148.0" layoutY="110.0" prefHeight="64.0" prefWidth="316.0" />
+      <TextField fx:id="image" disable="true" layoutX="148.0" layoutY="185.0" />
+      <TextField fx:id="prix" layoutX="148.0" layoutY="223.0" />
+      <TextField fx:id="nbr" layoutX="148.0" layoutY="276.0" />
+      <Button fx:id="edit" layoutX="448.0" layoutY="319.0" mnemonicParsing="false" onAction="#modifier" prefHeight="21.0" prefWidth="74.0" text="modifier" />
+      <Button layoutX="362.0" layoutY="185.0" mnemonicParsing="false" onAction="#parcourir" text="parcourir" />
+   </children>
+</AnchorPane>
