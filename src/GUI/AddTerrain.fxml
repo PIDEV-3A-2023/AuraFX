@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ADDTerrainController">
+   <children>
+      <Label layoutX="41.0" layoutY="14.0" prefHeight="102.0" prefWidth="454.0" text="Ajouter un terrain ">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="66.0" layoutY="127.0" text="Surface">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtSurface" layoutX="194.0" layoutY="124.0" />
+      <Label layoutX="64.0" layoutY="179.0" text="Adresse">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAdresse" layoutX="193.0" layoutY="176.0" />
+      <Label layoutX="66.0" layoutY="232.0" text="Potentiel ">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPotentiel" layoutX="191.0" layoutY="229.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="62.0" layoutY="284.0" prefHeight="22.0" prefWidth="84.0" text="id_membre">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtMembre" layoutX="193.0" layoutY="282.0" />
+      <Button fx:id="btngetback" layoutX="116.0" layoutY="329.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #1533ac;" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnAjouter" layoutX="292.0" layoutY="329.0" mnemonicParsing="false" onAction="#AddPub" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #1533ac;" text="Ajouter" textFill="#fffdfd">
+         <font>
+            <Font name="System Bold Italic" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
