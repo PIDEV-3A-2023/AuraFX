@@ -20,8 +20,8 @@ public class DonController implements Initializable {
 
     @FXML
     private TableView<Don> tableView;
-    @FXML
-    private TableColumn<Don, Integer> idColumn;
+    //@FXML
+    //private TableColumn<Don, Integer> idColumn;
     @FXML
     private TableColumn<Don, Double> montantColumn;
     @FXML
@@ -47,7 +47,7 @@ public class DonController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        //idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
         montantColumn.setCellValueFactory(new PropertyValueFactory<>("montant"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
         carteColumn.setCellValueFactory(new PropertyValueFactory<>("carte"));

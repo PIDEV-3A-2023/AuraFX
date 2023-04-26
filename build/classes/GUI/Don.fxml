@@ -10,7 +10,7 @@
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.DonController">
     <TableView fx:id="tableView" layoutX="11.0" layoutY="8.0" prefHeight="235.0" prefWidth="828.0">
              <columns>
-                 <TableColumn fx:id="idColumn" prefWidth="40.0" text="ID" />
+                 <!--TableColumn fx:id="idColumn" prefWidth="40.0" text="ID" /-->
                  <TableColumn fx:id="montantColumn" prefWidth="75.0" text="Montant" />
                  <TableColumn fx:id="dateColumn" prefWidth="150.0" text="Date" />
                  <TableColumn fx:id="carteColumn" prefWidth="150.0" text="Carte" />
@@ -18,7 +18,7 @@
                  <TableColumn fx:id="emailColumn" prefWidth="180.0" text="Email" />
              </columns>
      </TableView>
-          <ComboBox fx:id="idComboBox" layoutX="268.0" layoutY="251.0" prefHeight="26.0" prefWidth="55.0" />
+          <ComboBox fx:id="idComboBox" layoutX="269.0" layoutY="251.0" prefHeight="26.0" prefWidth="55.0" />
           <TextField fx:id="fxMontant" layoutX="267.0" layoutY="286.0" promptText="Montant" text="0" />
           <TextField fx:id="fxCarte" layoutX="267.0" layoutY="320.0" promptText="Carte" />
           <TextField fx:id="fxMessage" layoutX="433.0" layoutY="286.0" promptText="Message" />
