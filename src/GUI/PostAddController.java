@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Entities.Comment;
 import Entities.Post;
 import Services.ServicePost;
 import java.io.File;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import static java.time.temporal.TemporalQueries.localDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
 import static javafx.application.Application.launch;
@@ -103,9 +105,28 @@ public class PostAddController  {
         Date date = Date.from(instant);*/
         
 
-        if (nom.isEmpty() || content.isEmpty() || theme.isEmpty() || imageFile==null ) {
+        if (nom.isEmpty() ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please enter nom, content, theme and image");
+            alert.setContentText("Please enter nom");
+            alert.showAndWait();
+            return;
+        }
+        
+        if (theme.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please enter theme");
+            alert.showAndWait();
+            return;
+        }
+        if (content.isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please enter content");
+            alert.showAndWait();
+            return;
+        }
+        if (imageFile==null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please enter image");
             alert.showAndWait();
             return;
         }
@@ -130,12 +151,14 @@ public class PostAddController  {
 }
 
         //  DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
-          Date now = new Date();  
+          Date now = new Date(); 
+         
           //String date= dtf.format(now);
           post.setDate_Creation(now);
           post.setTheme(theme);
           post.setNom(nom);
           post.setContenu(content);
+      
         postService.addPost(post);
 
         

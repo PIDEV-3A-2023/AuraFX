@@ -30,6 +30,7 @@ public class Desktop_App{
       // MyConnection con = MyConnection.getInstance();
        
      ServicePost sp = new ServicePost();
+    // System.out.println(sp.comments(56)); 
        //sp.addPost(p);
    // sp.displayPosts();
     // sp.deletePost(53);
@@ -38,7 +39,7 @@ public class Desktop_App{
      // sp.updatePost(p1);
     
     
-       Comment c = new Comment(4,36,"randomComment",date);
+       //Comment c = new Comment(4,36,"randomComment",date);
        Comment c1 = new Comment(108,"yyyy");
 //     ServiceComment sc = new ServiceComment();
   //    sc.addComment(c);

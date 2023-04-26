@@ -4,6 +4,7 @@
  */
 package Entities;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -14,6 +15,10 @@ public class Post {
     private int id,nbr_Vue;
      private String theme,nom,contenu,image;
     private Date date_Creation;
+    private Membre membre;
+     
+
+    
 
     public Post(int id, String theme, String nom, String contenu, String image) {
         this.id = id;
@@ -21,7 +26,10 @@ public class Post {
         this.nom = nom;
         this.contenu = contenu;
         this.image = image;
+       
     }
+
+    
    
 
     public Post(int id, String theme, String nom, String contenu, String image, Date date_Creation) {
@@ -32,6 +40,7 @@ public class Post {
         this.image = image;
         this.date_Creation = date_Creation;
         this.nbr_Vue = nbr_Vue;
+       
     }
     
      public Post( String theme, String nom, String contenu, String image, Date date_Creation) {
@@ -41,6 +50,7 @@ public class Post {
         this.contenu = contenu;
         this.image = image;
         this.date_Creation = date_Creation;
+        
  
     }
     public Post(String theme, String nom, String contenu,Date date_Creation) {
@@ -49,18 +59,25 @@ public class Post {
         this.nom = nom;
         this.contenu = contenu;
         this.date_Creation = date_Creation;
+        
     }
 
     public Post(String theme, String nom, String contenu) {
         this.theme = theme;
         this.nom = nom;
         this.contenu = contenu;
+        
     }
    
     
     public Post() {
+       
     }
 
+   
+   
+
+    
     public int getId() {
         return id;
     }
@@ -122,7 +139,17 @@ public class Post {
     public String toString() {
         return "Post{" + "id=" + id + ", theme=" + theme + ", nom=" + nom + ", contenu=" + contenu + ", image=" + image + ", date_Creation=" + date_Creation + '}';
     }
+    public Membre getMembre() {
+        return membre;
+    }
 
+    public void setMembre(Membre membre) {
+        this.membre = membre;
+    }
+ 
+    
+  
+    
     public int getStatus() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

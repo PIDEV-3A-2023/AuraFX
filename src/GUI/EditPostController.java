@@ -88,7 +88,7 @@ public class EditPostController implements Initializable {
             alert.setContentText("Please enter nom, content, theme ");
             alert.showAndWait();
             return;
-        }
+            }
         if( content.length()<20 ){
             
             Alert alert = new Alert(Alert.AlertType.WARNING);
