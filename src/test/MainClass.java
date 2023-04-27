@@ -5,9 +5,17 @@
  */
 package test;
 
+import entities.achat;
 import entities.categorie;
+import entities.facture;
+import entities.membre;
 import entities.produit;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import services.achatservice;
 import services.categorieservice;
+import services.factureservice;
 import services.produitservice;
 import utils.MaConnection;
 
@@ -19,13 +27,25 @@ public class MainClass {
     public static void main(String[] args) {
        // MaConnection m = new MaConnection();
        categorie c =new categorie(11,"azer","ggg",8);
-       categorieservice cs= new categorieservice();
-      // produit p=new produit(32,c,"adem","hhhhhhhhhhhhhhhhhhhhhhhhhhhh","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRZ0oIdI0Sg3NQ4RqK6TO40MSbekA2pOJ3fg&usqp=CAU",10,1);
+       //categorieservice cs= new categorieservice();
+       produit p=new produit(32,c,"adem","hhhhhhhhhhhhhhhhhhhhhhhhhhhh","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRZ0oIdI0Sg3NQ4RqK6TO40MSbekA2pOJ3fg&usqp=CAU",10,1);
        // produitservice ps=new produitservice();
         //System.out.print( ps.getAll());
         //ps.modifier("azer", "ggg", "hhh", 0, 0, c,p);
         //ps.supprimer(p);
-        cs.modifier("zzz", "zzz", 0, c);
-        
+        //cs.modifier("zzz", "zzz", 0, c);
+        membre m =new membre(16);
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+        String formattedDate = localDate.format(formatter);
+        Date date= Date.valueOf(localDate);
+        facture f =new facture(1,m, 0, date);
+        achatservice as=new achatservice();
+        factureservice fs = new  factureservice();
+        System.out.print(fs.getbymem(16));
+       // System.out.println(date);
+       //achat a =new achat(f, m, p, 1, 5); 
+      // as.ajouter(a);
+       //System.out.print(""+as.achatparcat(9));
     }
 }

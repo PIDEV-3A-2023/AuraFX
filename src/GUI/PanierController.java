@@ -7,12 +7,21 @@ package GUI;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import de.jensd.fx.glyphs.materialicons.MaterialIcon;
+import de.jensd.fx.glyphs.materialicons.MaterialIconView;
+import entities.achat;
+import entities.facture;
+import entities.membre;
 import entities.produit;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
-import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import static java.time.temporal.TemporalQueries.localDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +35,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -37,56 +47,49 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
-import services.produitservice;
+import javax.mail.MessagingException;
+import services.EmailSender;
+import services.achatservice;
+import services.factureservice;
+import services.panier;
 
 /**
  * FXML Controller class
  *
  * @author azerb
  */
-public class AfficherproduitController implements Initializable {
-
+public class PanierController implements Initializable {
+    
     @FXML
-    private TableColumn<produit, Integer> id;
+    private Button back;
+    @FXML
+    private TableView<produit> tabpan;
+    @FXML
+    private TableColumn<produit, String> image;
     @FXML
     private TableColumn<produit, String> nom;
     @FXML
-    private TableColumn<produit, String> desc;
-    @FXML
-    private TableColumn<produit, String> cat;
-    @FXML
-    private TableColumn<produit, String> prix;
-    @FXML
-    private TableColumn<produit, String> nbr;
-    @FXML
-    private TableView<produit> tab;
-    produitservice ps = new produitservice();
-    produit produit = new produit();
-    @FXML
-    private Button add;
-    @FXML
     private TableColumn<produit, String> actions;
+    produit produit;
     @FXML
-    private Button refresh;
+    private Button payerb;
     @FXML
-    private TableColumn<produit, String> image;
+    private Label somme;
+    factureservice fs =new factureservice();
+    achatservice as =new achatservice();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        // TODO
         load();
-    } 
-    
+    }    
     public void load(){
-        List<produit>l= ps.getAll();
-        ObservableList lp=FXCollections.observableArrayList(l); 
-        id.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        desc.setCellValueFactory(new PropertyValueFactory<>("desc"));
-        prix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        nbr.setCellValueFactory(new PropertyValueFactory<>("nbr"));
-        cat.setCellValueFactory(new PropertyValueFactory<>("categorie"));
+    
+        Map<produit, Integer> p = panier.getInstance().getProduitsQuantites();
+        ObservableList<produit> produits = FXCollections.observableArrayList(p.keySet());
+        ObservableList<Integer> quantites = FXCollections.observableArrayList(p.values());
         image.setCellValueFactory(new PropertyValueFactory<produit, String>("image"));
             image.setCellFactory(param -> {
                 return new TableCell<produit, String>() {
@@ -112,7 +115,6 @@ public class AfficherproduitController implements Initializable {
                     }
                 };
             });
-        
         Callback<TableColumn<produit, String>, TableCell<produit, String>> cellFoctory;
         cellFoctory = (TableColumn<produit, String> param) -> {
             // make cell containing buttons
@@ -128,24 +130,28 @@ public class AfficherproduitController implements Initializable {
 
                     } else {
 
-                        FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
-                        FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
-
-                        deleteIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                        + "-glyph-size:28px;"
-                                        + "-fx-fill:#ff1744;"
-                        );
-                        editIcon.setStyle(
+                        MaterialIconView upicon = new MaterialIconView(MaterialIcon.ARROW_DROP_UP);
+                        MaterialIconView downicon = new MaterialIconView(MaterialIcon.ARROW_DROP_DOWN);
+                        Integer i =panier.getInstance().getProduitsQuantites().get(tabpan.getSelectionModel().getSelectedItem());
+                        Label quantityLabel = new Label("");
+                        quantityLabel.setText(String.valueOf(i));
+                        setGraphic(quantityLabel);
+                        upicon.setStyle(
                                 " -fx-cursor: hand ;"
                                         + "-glyph-size:28px;"
                                         + "-fx-fill:#00E676;"
                         );
-                        deleteIcon.setOnMouseClicked((MouseEvent event) -> {
+                        downicon.setStyle(
+                                " -fx-cursor: hand ;"
+                                        + "-glyph-size:28px;"
+                                        +  "-fx-fill:#ff1744;"
+                        );
+                        upicon.setOnMouseClicked((MouseEvent event) -> {
                             
                             
-                            produit = tab.getSelectionModel().getSelectedItem();
-                            ps.supprimer(produit);
+                            produit = tabpan.getSelectionModel().getSelectedItem();
+                            panier.getInstance().ajouterProduit(produit);
+                            //ps.supprimer(produit);
                             load();
                             
                             
@@ -153,35 +159,21 @@ public class AfficherproduitController implements Initializable {
                             
                             
                         });
-                        editIcon.setOnMouseClicked((MouseEvent event) -> {
+                        downicon.setOnMouseClicked((MouseEvent event) -> {
                             
-                            produit = tab.getSelectionModel().getSelectedItem();
-                            FXMLLoader loader = new FXMLLoader ();
-                            loader.setLocation(getClass().getResource("editproduit.fxml"));
-                            try {
-                                loader.load();
-                            } catch (IOException ex) {
-                                Logger.getLogger(AfficherproduitController.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+                            produit = tabpan.getSelectionModel().getSelectedItem();
+                            panier.getInstance().decreaseValue(produit);
                             
-                            EditproduitController EditproduitController = loader.getController();
-                            //EditproduitController.setUpdate(true);
-                            EditproduitController.setTextField(produit.getNom(), produit.getDesc(), produit.getCategorie(), produit.getNbr(), produit.getPrix(), produit.getImage(),produit.getId());
-                            Parent parent = loader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setScene(new Scene(parent));
-                            stage.initStyle(StageStyle.UTILITY);
-                            stage.show();
-                            
-                            
+                            load();
                             
                             
                         });
 
-                        HBox managebtn = new HBox(editIcon, deleteIcon);
+                        HBox managebtn = new HBox(downicon,quantityLabel, upicon);
                         managebtn.setStyle("-fx-alignment:center");
-                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
-                        HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
+                        HBox.setMargin(upicon, new Insets(2, 0, 0, 3));
+                        HBox.setMargin(quantityLabel, new Insets(2, 3, 0, 0));
+                        HBox.setMargin(downicon, new Insets(2, 2, 0, 3));
 
                         setGraphic(managebtn);
 
@@ -194,26 +186,52 @@ public class AfficherproduitController implements Initializable {
 
             return cell;
         };
-        
-         actions.setCellFactory(cellFoctory);
-        tab.setItems(lp);
+        actions.setCellFactory(cellFoctory);
+        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        tabpan.setItems(produits);
+        somme.setText("montant Totale "+panier.getInstance().calculerSommeTotale());
+    }
+    @FXML
+    private void afficher(ActionEvent event) {
+       // for(produit p :panier.getInstance().getProduitsQuantites().keySet()){
+        System.out.println(panier.getInstance().getProduitsQuantites());//}
+        try {
+    EmailSender.sendEmail("azerbennasr@gmail.com", "Subject", "Message body");
+} catch (MessagingException e) {
+    e.printStackTrace();
+}
     }
 
     @FXML
-    private void Toadd(MouseEvent event) {
+    private void back(ActionEvent event) {
         try {
             //navigation
-            Parent loader = FXMLLoader.load(getClass().getResource("addproduit.fxml"));
-            add.getScene().setRoot(loader);
+            Parent loader = FXMLLoader.load(getClass().getResource("produitfront.fxml"));
+            
+            back.getScene().setRoot(loader);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
     @FXML
-    private void refresh(ActionEvent event) {
-        load();
+    private void payer(ActionEvent event) {
+        LocalDate localDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
+        String formattedDate = localDate.format(formatter);
+        Date date= Date.valueOf(localDate);
+        membre m=new membre(16);
+        facture f =new facture(m, panier.getInstance().calculerSommeTotale(), date);
+        fs.ajouter(f);
+        f=fs.lastfacture();
+        for (Map.Entry<produit, Integer> entry : panier.getInstance().getProduitsQuantites().entrySet()) {
+            produit key = entry.getKey();
+            int value = entry.getValue();
+            achat a=new achat(f, m, key, value, value*key.getPrix());
+            as.ajouter(a);
+            
+       }
+        
     }
-
     
 }

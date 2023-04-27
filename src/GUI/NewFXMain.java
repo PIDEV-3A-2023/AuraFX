@@ -23,12 +23,11 @@ import javafx.stage.Stage;
  * @author azerb
  */
 public class NewFXMain extends Application {
-    /* */
     
     @Override
     public void start(Stage primaryStage) {
         try {
-            Parent root=FXMLLoader.load(getClass().getResource("affichercat.fxml"));
+            Parent root=FXMLLoader.load(getClass().getResource("stat.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");

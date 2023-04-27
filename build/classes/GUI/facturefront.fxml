@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="630.0" prefWidth="922.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FacturefrontController">
+   <children>
+      <TableView fx:id="tab" layoutX="120.0" layoutY="34.0" prefHeight="541.0" prefWidth="705.0">
+        <columns>
+          <TableColumn fx:id="id" prefWidth="75.0" text="id" />
+          <TableColumn fx:id="montant" prefWidth="326.0" text="montant" />
+            <TableColumn fx:id="date" prefWidth="303.0" text="date" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

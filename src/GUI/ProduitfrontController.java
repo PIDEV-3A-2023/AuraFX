@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,6 +46,8 @@ public class ProduitfrontController implements Initializable {
     private TableColumn<produit, String> nom;
     produit p = new produit();
     produitservice ps = new produitservice();
+    @FXML
+    private TextField search;
 
     /**
      * Initializes the controller class.
@@ -79,6 +84,23 @@ public class ProduitfrontController implements Initializable {
             });
         tab.setItems(lp);
         // TODO
+        FilteredList<produit> filterdata=new FilteredList<>(lp,b ->true);
+        search.textProperty().addListener((observable,oldvalue,newvalue)->{
+            filterdata.setPredicate(produit -> {
+        if (newvalue == null || newvalue.isEmpty() ) {
+            return true;
+        }
+        String lowerCaseSearchText = newvalue.toLowerCase();
+        if (produit.getNom().toLowerCase().contains(lowerCaseSearchText) ) {
+            return true;
+        }
+        return false;
+    });
+
+        });
+        SortedList<produit> sorteddata = new SortedList<>(filterdata);
+        sorteddata.comparatorProperty().bind(tab.comparatorProperty());
+        tab.setItems(sorteddata);
     }    
 
     @FXML
@@ -87,18 +109,18 @@ public class ProduitfrontController implements Initializable {
         try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("singleproduit.fxml"));
                 Parent root = loader.load();
-
+                Scene scene = new Scene(root);
                 // pass the selected post to the single post controller
                 SingleproduitController controller = loader.getController();
                 controller.setproduit(p);
 
-                Stage stage = new Stage();
-                stage.setScene(new Scene(root));
-                stage.show();
+                Stage stage = (Stage) tab.getScene().getWindow();
+        stage.setScene(scene);
             } catch (IOException e) {
                 e.printStackTrace();
             }
     }
+   
     
     
 }
