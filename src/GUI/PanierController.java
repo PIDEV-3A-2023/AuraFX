@@ -17,10 +17,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import static java.time.temporal.TemporalQueries.localDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -52,6 +54,7 @@ import services.EmailSender;
 import services.achatservice;
 import services.factureservice;
 import services.panier;
+import services.pdf;
 
 /**
  * FXML Controller class
@@ -195,11 +198,7 @@ public class PanierController implements Initializable {
     private void afficher(ActionEvent event) {
        // for(produit p :panier.getInstance().getProduitsQuantites().keySet()){
         System.out.println(panier.getInstance().getProduitsQuantites());//}
-        try {
-    EmailSender.sendEmail("azerbennasr@gmail.com", "Subject", "Message body");
-} catch (MessagingException e) {
-    e.printStackTrace();
-}
+        
     }
 
     @FXML
@@ -220,7 +219,8 @@ public class PanierController implements Initializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
         String formattedDate = localDate.format(formatter);
         Date date= Date.valueOf(localDate);
-        membre m=new membre(16);
+        membre m=new membre(16, "ben nasr", "azer", "azerbennasr@gmail.com", "0000");
+        
         facture f =new facture(m, panier.getInstance().calculerSommeTotale(), date);
         fs.ajouter(f);
         f=fs.lastfacture();
@@ -231,6 +231,20 @@ public class PanierController implements Initializable {
             as.ajouter(a);
             
        }
+        List<achat> la=as.achatparfact(f.getId());
+        pdf.genererFacturesansouvrir(""+f.getId(), f.getMontant(), f.getDate(), la);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String message ="Bonjour Mr/Mme "+m.getNom()+" "+m.getPrenom()+" vos achats afféctuée le "+sdf.format(f.getDate())+"sont confirmés vous trouverez au dessous votre facture";
+        //EmailSender.with(m.getMail(), "Subject", message);   
+        try {
+            //navigation
+            Parent loader = FXMLLoader.load(getClass().getResource("facturefront.fxml"));
+            
+            back.getScene().setRoot(loader);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
         
     }
     

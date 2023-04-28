@@ -8,10 +8,14 @@ package services;
 import entities.achat;
 import entities.facture;
 import entities.membre;
+import entities.produit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import utils.MaConnection;
 
 /**
@@ -71,5 +75,21 @@ public class achatservice {
         
         return n;
         
+    }
+     public List<achat> achatparfact(int id) {
+        List<achat> achats= new ArrayList<>();
+            try {
+                String sql = "SELECT a.id, p.nom_prod as pnom, p.prix as pprix, a.nbr_piece, a.prix,a.produit_id FROM achat a JOIN produit p ON a.produit_id = p.id where a.facture_id="+id;
+                Statement ste = cnx.createStatement();
+                ResultSet s = ste.executeQuery(sql);
+
+                while (s.next()) {
+                    achat p =  new achat( new produit(s.getInt("produit_id"), s.getString("pnom")), s.getInt("nbr_piece"), s.getFloat("prix"));
+                    achats.add(p);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            return achats;    
     }
 }

@@ -4,29 +4,36 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/AddcatController.java</file>
-            <file>file:/C:/Users/azerb/Desktop/aura12/src/services/pdf.java</file>
-            <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/AfficherproduitController.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/produitfront.fxml</file>
-            <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/AffichercatController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/service/CodingErrorPdfInvoiceCreator.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/SingleproduitController.java</file>
-            <file>file:/C:/Users/azerb/Desktop/aura12/src/entities/produit.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/entities/facture.java</file>
-            <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/stat.fxml</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/ProduitfrontController.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/EditproduitController.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/services/produitservice.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/services/panier.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/NewFXMain.java</file>
-            <file>file:/C:/Users/azerb/Desktop/aura12/src/test/MainClass.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/addcat.fxml</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/service/ConstantUtil.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/services/categorieservice.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/services/factureservice.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/entities/achat.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/service/HeaderDetails.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/service/AddressDetails.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/services/pdf.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/AfficherproduitController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/AffichercatController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/entities/produit.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/stat.fxml</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/test/MainClass.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/PanierController.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/editcat.fxml</file>
-            <file>file:/C:/Users/azerb/Desktop/aura12/src/services/categorieservice.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/FacturefrontController.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/services/achatservice.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/entities/membre.java</file>
-            <file>file:/C:/Users/azerb/Desktop/aura12/src/services/factureservice.java</file>
             <file>file:/C:/Users/azerb/Desktop/aura12/src/GUI/StatController.java</file>
-            <file>file:/C:/Users/azerb/Desktop/aura12/src/entities/achat.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/src/service/MyFooter.java</file>
+            <file>file:/C:/Users/azerb/Desktop/aura12/build.xml</file>
         </group>
     </open-files>
 </project-private>

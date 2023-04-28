@@ -34,6 +34,13 @@ public class achat {
         this.prix = prix;
     }
 
+    public achat( produit produit, int nbr, float prix) {
+        
+        this.produit = produit;
+        this.nbr = nbr;
+        this.prix = prix;
+    }
+
     public int getId() {
         return id;
     }
@@ -80,6 +87,11 @@ public class achat {
 
     public void setPrix(float prix) {
         this.prix = prix;
+    }
+
+    @Override
+    public String toString() {
+        return "achat{" + "id=" + id + ", facture=" + facture + ", membre=" + membre + ", produit=" + produit + ", nbr=" + nbr + ", prix=" + prix + '}';
     }
     
     

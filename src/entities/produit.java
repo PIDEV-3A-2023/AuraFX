@@ -42,6 +42,13 @@ public class produit {
         this.nbr = nbr;
     }
 
+    public produit(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
+    
+    
     public int getId() {
         return id;
     }
