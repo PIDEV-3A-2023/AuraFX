@@ -124,6 +124,7 @@ public class ServicePost implements InterfacePost{
             System.out.println(ex.getMessage());
         }
         return posts;
+        
     }
       @Override
      public int nbrComments (int id){
@@ -155,6 +156,33 @@ public class ServicePost implements InterfacePost{
             System.out.println(ex.getMessage());
         }
         return cmnts.size(); 
+    }
+     public Membre getMemberById (int id){
+         Membre m = null;
+        try {
+            String req = "select * from membre where id = " +id+"";
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+            m = new Membre();
+                m.setId(rs.getInt(1));
+                m.setNom(rs.getString("nom"));
+                m.setPrenom(rs.getString("prenom"));
+                m.setEmail(rs.getString("email"));
+                m.setPassword(rs.getString("password"));
+                m.setTel(rs.getString("tel"));
+                m.setAdresse(rs.getString("adresse"));
+               m.setRole(rs.getString("role"));
+               m.setDateNaiss(rs.getDate("date_nais"));
+               
+    
+            }
+          
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return m; 
     }
        @Override
        public void addRate(int idp,int idm,int rate,java.util.Date date) {

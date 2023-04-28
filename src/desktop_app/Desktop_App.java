@@ -4,6 +4,7 @@
  */
 package Desktop_App;
 import Entities.Comment;
+import Entities.Membre;
 import Entities.Post;
 import Services.ServiceComment;
 import Services.ServicePost;
@@ -30,6 +31,8 @@ public class Desktop_App{
       // MyConnection con = MyConnection.getInstance();
        
      ServicePost sp = new ServicePost();
+     Membre m = sp.getMemberById(1);
+    System.out.println(m.getEmail()); 
     // System.out.println(sp.comments(56)); 
        //sp.addPost(p);
    // sp.displayPosts();

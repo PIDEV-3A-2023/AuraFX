@@ -15,7 +15,9 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -40,6 +42,15 @@ import javafx.stage.Stage;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
+import java.util.Properties;
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 
 
@@ -83,12 +94,18 @@ public class SinglePostController implements Initializable {
     
     private int likeCount = 0;
     private int dislikeCount = 0;
+    
+    private Map<Integer, Integer> membreBadWordCounts = new HashMap<>();
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.sc = new ServiceComment();
         this.sp = new ServicePost();
-       this.membre=new Membre();
+        
+       this.membre = sp.getMemberById(1);
+     
+
     }
 
     public void setPost(Post post) {
@@ -172,11 +189,11 @@ public class SinglePostController implements Initializable {
                         URL url = new URL("https://neutrinoapi.net/bad-word-filter");
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("GET");
-                        connection.setRequestProperty("User-ID", "rrr");
-                        connection.setRequestProperty("API-Key", "3b8j6yd1XZ8igQbWMznsJsb3OcBOswEg932B9qmZNyvDaz2d");
+                        connection.setRequestProperty("User-ID", "leoo10");
+                        connection.setRequestProperty("API-Key", "HA5e6GzK9rJBTnI1y3Tk70Y9tdmbptkR8NOr6Oa70412SZHR");
                         
                         // Send request content
-                        connection.setDoOutput(true);
+                       connection.setDoOutput(true);
                        OutputStream os = connection.getOutputStream();
                        os.write(("content=" + updatedComment).getBytes());
                        os.flush();
@@ -196,6 +213,8 @@ public class SinglePostController implements Initializable {
                             Alert alert = new Alert(Alert.AlertType.ERROR);
                             alert.setContentText("Your comment contains inappropriate language and cannot be posted.");
                             alert.showAndWait();
+                             // Increment the count of comments containing bad words for this member
+                             incrementBadWordCountForMembre();
                         }
                         else{
                         comment.setText(updatedComment);
@@ -224,30 +243,30 @@ public class SinglePostController implements Initializable {
     }
 
     @FXML
-    private void addComment() {
-    String content = commentTextArea.getText();
+private void addComment() {
+String content = commentTextArea.getText();
 
-    if (content.isEmpty()) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setContentText("Comment cannot be empty");
-        alert.showAndWait();
-    } else {
+
+if (content.isEmpty()) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setContentText("Comment cannot be empty");
+    alert.showAndWait();
+} else {
     // Send HTTP request to Neutrino API to check for bad words
     try {
         URL url = new URL("https://neutrinoapi.net/bad-word-filter");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-        connection.setRequestProperty("User-ID", "rrr");
-        connection.setRequestProperty("API-Key", "3b8j6yd1XZ8igQbWMznsJsb3OcBOswEg932B9qmZNyvDaz2d");
-       
-        
+        connection.setRequestProperty("User-ID", "leoo10");
+        connection.setRequestProperty("API-Key", "HA5e6GzK9rJBTnI1y3Tk70Y9tdmbptkR8NOr6Oa70412SZHR");
+
         // Send request content
-         connection.setDoOutput(true);
+        connection.setDoOutput(true);
         OutputStream os = connection.getOutputStream();
         os.write(("content=" + content).getBytes());
         os.flush();
         os.close();
-        
+
         // Read API response
         BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
         String inputLine;
@@ -256,22 +275,26 @@ public class SinglePostController implements Initializable {
             response.append(inputLine);
         }
         in.close();
-        
+
         // Check if content contains bad words
         if (response.toString().contains("true")) {
             // Handle bad word found
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Your comment contains inappropriate language and cannot be posted.");
             alert.showAndWait();
+            // Increment the count of comments containing bad words for this member
+            incrementBadWordCountForMembre();
+            
+            
         } else {
             // Add comment to list of comments
             Comment c = new Comment();
             c.setText(content);
             c.setDate(new Date());
             c.setPost(this.post);
-         
-           // this.post.addComment(c);
-            this.membre.setId(1);
+
+            // this.post.addComment(c);
+           // this.membre.setId(1);
             c.setMembre(this.membre);
             sc.addComment(c);
             commentTextArea.clear();
@@ -285,6 +308,74 @@ public class SinglePostController implements Initializable {
     }
 }
 }
+
+    private void sendWarningEmail(String toEmail) {
+    String subject = "Warning: Inappropriate language detected in your comments";
+    String body = "Hello "+this.membre.getPrenom()+", your comments have been flagged for containing inappropriate language. Please refrain from using inappropriate language in your comments.";
+    sendEmail(toEmail, subject, body);
+}
+    
+   private void sendEmail(String toEmail, String subject, String body) {
+    // Créer une propriété pour configurer l'envoi de l'email
+        Properties properties = new Properties();
+       /* props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "587");
+       props.put("mail.smtp.ssl.trust", "*");*/
+       properties.put("com.hof.email.starttime","20170519094544");
+        properties.put("mail.smtp.auth","true");
+        properties.put("mail.smtp.connectiontimeout","60000");
+        properties.put("mail.smtp.host","smtp.gmail.com");
+        properties.put("mail.smtp.port","25");
+        properties.put("mail.smtp.ssl.trust","*");
+        properties.put("mail.smtp.starttls.enable","true");
+        properties.put("mail.smtp.timeout","60000");
+        properties.put("mail.transport.protocol","smtp");
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
+    
+    
+    // Créer une session avec l'adresse e-mail et le mot de passe de l'expéditeur
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("azer.bennasr@esprit.tn", "201JMT1764");
+            }
+        });
+    
+    try {
+        Message message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("azer.bennasr@esprit.tn"));
+        message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+        message.setSubject(subject);
+        message.setText(body);
+        Transport.send(message);
+    } catch (MessagingException e) {
+        throw new RuntimeException(e);
+    }
+}
+
+
+    private void incrementBadWordCountForMembre() {
+    int badWordCount = 0;
+    if (membreBadWordCounts.containsKey(this.membre.getId())) {
+        badWordCount = membreBadWordCounts.get(this.membre.getId());
+    }
+    badWordCount++;
+    membreBadWordCounts.put(this.membre.getId(), badWordCount);
+    
+    // Check if member should be blocked
+    if (badWordCount >= 4) {
+       // blockMembre();
+       
+        sendEmail(this.membre.getEmail(), "You have been blocked from posting comments", "Oops.."+this.membre.getPrenom()+", You have been blocked from posting comments due to repeated use of inappropriate language.");
+    } else if (badWordCount == 2) {
+      
+   // System.out.println(membre.getEmail()); 
+        sendWarningEmail(this.membre.getEmail());
+    }
+}
+
     @FXML
     private void back(ActionEvent event) throws IOException {
          FXMLLoader loader = new FXMLLoader(getClass().getResource("PostFront.fxml"));
