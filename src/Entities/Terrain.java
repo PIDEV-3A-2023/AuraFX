@@ -14,21 +14,22 @@ public class Terrain {
  private String adresse;
  private double surface ;
  private double potentiel ;
-private int id_membre  ;
+private membre  membre  ; 
 
-    public Terrain(int id_terrain, String adresse, double surface, double potentiel, int id_membre) {
+    public Terrain(int id_terrain, String adresse, double surface, double potentiel, membre membre) {
         this.id_terrain = id_terrain;
         this.adresse = adresse;
         this.surface = surface;
         this.potentiel = potentiel;
-        this.id_membre = id_membre;
+        this.membre = membre;
+        
     }
 
-    public Terrain(String adresse, double surface, double potentiel, int id_membre) {
+    public Terrain(String adresse, double surface, double potentiel,  membre membre) {
         this.adresse = adresse;
         this.surface = surface;
         this.potentiel = potentiel;
-        this.id_membre = id_membre;
+        this.membre = membre;
     }
 
     public Terrain() {
@@ -50,10 +51,6 @@ private int id_membre  ;
         return potentiel;
     }
 
-    public int getId_membre() {
-        return id_membre;
-    }
-
     public void setId_terrain(int id_terrain) {
         this.id_terrain = id_terrain;
     }
@@ -70,14 +67,18 @@ private int id_membre  ;
         this.potentiel = potentiel;
     }
 
-    public void setId_membre(int id_membre) {
-        this.id_membre = id_membre;
+    public membre getMembre() {
+        return membre;
+    }
+
+    public void setMembre(membre membre) {
+        this.membre = membre;
     }
 
     @Override
     public String toString() {
-        return "Terrain{" + "id_terrain=" + id_terrain + ", adresse=" + adresse + ", surface=" + surface + ", potentiel=" + potentiel + ", id_membre=" + id_membre + '}';
+        return "Terrain{" + "id_terrain=" + id_terrain + ", adresse=" + adresse + ", surface=" + surface + ", potentiel=" + potentiel + ", membre=" + membre + '}';
     }
-    
 
+   
 }

@@ -53,9 +53,14 @@
          </font>
       </Button>
       <TextField fx:id="txtAdresse" layoutX="440.0" layoutY="83.0" prefHeight="25.0" prefWidth="91.0" promptText="Input.." />
-      <Button fx:id="recherche" layoutX="664.0" layoutY="76.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#rechercheAction" prefHeight="39.0" prefWidth="105.0" style="-fx-background-color: #1533ac;" styleClass="light-button" text="Recherche" textFill="WHITE">
+      <Button fx:id="recherche" layoutX="680.0" layoutY="76.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#rechercheAction" prefHeight="39.0" prefWidth="105.0" style="-fx-background-color: #1533ac;" styleClass="light-button" text="Recherche" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="Stat" layoutX="553.0" layoutY="76.0" mnemonicParsing="false" onAction="#statAction" prefHeight="39.0" prefWidth="106.0" style="-fx-background-color: #1533ac;" text="Statistique" textFill="#fcfafa">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
    </children>

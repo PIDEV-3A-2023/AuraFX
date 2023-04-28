@@ -6,6 +6,7 @@
 package GUI;
 
 import Entities.Terrain;
+import Entities.membre;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -98,8 +99,8 @@ public class ADDTerrainController implements Initializable {
             if (result.get() == ButtonType.OK) {
                 // ... user chose OK
                 crudTerrain ps = new crudTerrain();
-                
-        Terrain t = new Terrain(txtAdresse.getText(),Double.parseDouble(txtSurface.getText()),Double.parseDouble(txtPotentiel.getText()),Integer.parseInt(txtMembre.getText()));
+                membre m = new membre (Integer.parseInt(txtMembre.getText()));
+        Terrain t = new Terrain(txtAdresse.getText(),Double.parseDouble(txtSurface.getText()),Double.parseDouble(txtPotentiel.getText()),m);
         ps.ajouterTerrain(t);
               
                // charger scene qui aff liste des terrains 

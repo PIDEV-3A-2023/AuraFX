@@ -4,11 +4,14 @@
  * and open the template in the editor.
  */
 package GUI;
-
+import Entities.membre ; 
 import Entities.Solde;
 import Entities.Terrain;
+import Entities.membre;
 import Services.CrudSolde;
 import Services.crudTerrain;
+
+import Services.CrudMembre;
 import Utils.PDFTerrain;
 import Utils.SendMail;
 import com.google.zxing.BarcodeFormat;
@@ -17,6 +20,8 @@ import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.itextpdf.text.DocumentException;
+import com.sun.prism.paint.Color;
+
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,14 +29,19 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -48,6 +58,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
@@ -69,6 +82,8 @@ public class ListTerrainController implements Initializable {
     private AnchorPane mainPain;
      @FXML
     private Button exportPDF;
+       @FXML
+    private Button Stat;
       @FXML
     private Button tri;
     @FXML
@@ -104,23 +119,22 @@ public class ListTerrainController implements Initializable {
             stackPane.getChildren().add(new Text("Aucune donnée"));
             mainVBox.getChildren().add(stackPane);
         }
-        // TODO // TODO
-    }    
-
     
-    public Parent makePubModel(Terrain terrain) {
+    }    
+public Parent makePubModel(Terrain terrain) {
         Parent parent = null;
 
         try {
             parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ModelTerrain.fxml")));
 
             HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
-            ((Text) innerContainer.lookup("#id")).setText("id : " + terrain.getId_terrain());
-            ((Text) innerContainer.lookup("#idPartenaire")).setText("id_membre : " + terrain.getId_membre());
+            ((Text) innerContainer.lookup("#id")).setText("id : " +terrain.getId_terrain());
+         ((Text) innerContainer.lookup("#idPartenaire")).setText("membre : " + terrain.getMembre().getId_membre());
             ((Text) innerContainer.lookup("#surface")).setText("surface : " + terrain.getSurface());
             ((Text) innerContainer.lookup("#adresse")).setText("adresse : " + terrain.getAdresse());
             ((Text) innerContainer.lookup("#potentiel")).setText("potentiel : " + terrain.getPotentiel());
-
+ 
+            
             ((Pane) innerContainer.lookup("#commentPane")).setVisible(false);
 
             ((Pane) innerContainer.lookup("#sss")).setVisible(true);
@@ -161,8 +175,13 @@ p=terrain;
                     String montant = ((TextField) innerContainer.lookup("#txtMontant")).getText();
    
      
-                                        try {
-                                             SendMail sendEmail = new SendMail("pidev.aura@gmail.com", "aldeuwdqmtbotzry", "pidev.aura@gmail.com", "Solde added succesfully","A new solde added succesfully avec montant = "+montant); 
+                                   try {
+                                       CrudMembre c = new CrudMembre();
+                                     
+                                       membre membre = c.getMembreById(Integer.parseInt((((Text) innerContainer.lookup("#idPartenaire")).getText()).split(":")[1].trim()));
+                                   String emailSansEspaces = membre.getEmail().replaceAll("\\s", ""); 
+                                     
+                                        SendMail sendEmail = new SendMail("pidev.aura@gmail.com", "aldeuwdqmtbotzry", emailSansEspaces  , "Solde added succesfully","Cher(e) client(e), Nous espérons que ce message vous trouve en bonne santé et que vous profitez bien de nos services. Nous avons le plaisir de vous informer que le solde de votre terrain a été ajouté avec succès sur notre application, Nous restons à votre disposition pour toute question ou assistance supplémentaire, Nous tenons à vous remercier pour votre confiance et votre fidélité. Nous sommes impatients de vous offrir la meilleure expérience possible sur notre plateforme, \"L'équipe d'AURA" );
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
@@ -188,7 +207,9 @@ p=terrain;
             });
  
             ((Button) innerContainer.lookup("#btnAfficheSoldes")).setOnAction((event) -> {
-                p = new Terrain(terrain.getId_terrain(), terrain.getAdresse(),terrain.getSurface(), terrain.getPotentiel(), terrain.getId_membre());
+             
+                p = new Terrain(terrain.getId_terrain(), terrain.getAdresse(), terrain.getSurface(), terrain.getPotentiel(),terrain.getMembre());
+             
                 try {
                     terrainId =terrain.getId_terrain();
                     Parent root = FXMLLoader.load(getClass().getResource("ListSoldes.fxml"));
@@ -312,6 +333,55 @@ p=terrain;
         }
         }
     }
-}
     
+       @FXML 
+   private void statAction(ActionEvent event) {
+    List<Terrain> listTerrain = ts.afficherAll();
 
+    Map<Terrain, Double> soldesParTerrain = new HashMap<>();
+    for (Terrain terrain : listTerrain) {
+        double sommeSoldes = new CrudSolde().getSommeSoldesParTerrain(terrain.getId_terrain());
+        soldesParTerrain.put(terrain, sommeSoldes);
+    }
+
+    List<Terrain> terrainsTries = soldesParTerrain.entrySet()
+            .stream()
+            .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toList());
+
+    mainVBox.getChildren().clear();
+
+    Text titre = new Text("Top 3 des terrains les plus bénéficiaires :");
+    titre.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+  
+    mainVBox.getChildren().add(titre);
+
+    VBox top3Box = new VBox();
+    top3Box.setAlignment(Pos.CENTER_LEFT);
+    top3Box.setSpacing(10);
+    top3Box.setPadding(new Insets(10));
+
+    for (int i = 0; i < 3 && i < terrainsTries.size(); i++) {
+        Terrain terrainBeneficie = terrainsTries.get(i);
+        double sommeSoldes = soldesParTerrain.get(terrainBeneficie);
+
+        HBox terrainBox = new HBox();
+        terrainBox.setAlignment(Pos.CENTER_LEFT);
+        terrainBox.setSpacing(10);
+
+        Text idTerrain = new Text(String.format("Terrain %d : ", terrainBeneficie.getId_terrain()));
+        idTerrain.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        Text adresseTerrain = new Text(terrainBeneficie.getAdresse());
+        Text soldeText = new Text(String.format("Somme des soldes : %.2f TND", sommeSoldes));
+
+        terrainBox.getChildren().addAll(idTerrain, adresseTerrain, soldeText);
+
+        top3Box.getChildren().add(terrainBox);
+    }
+
+    mainVBox.getChildren().add(top3Box);
+}   
+   
+ }
+    

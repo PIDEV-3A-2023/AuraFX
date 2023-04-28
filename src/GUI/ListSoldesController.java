@@ -25,6 +25,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -50,6 +51,7 @@ public class ListSoldesController implements Initializable {
     private Text topText;
     @FXML
     private Button btnRetour;
+
     public CrudSolde crudSolde = new CrudSolde();
     /**
      * Initializes the controller class.
@@ -76,7 +78,8 @@ List<Solde> listSoldes = crudSolde.displaySoldes(ListTerrainController.terrainId
         
     }    
     }
-    public Parent makeSoldeModel(Solde solde) {
+  
+ public Parent makeSoldeModel(Solde solde) {
         Parent parent = null;
 
         try {
@@ -85,7 +88,7 @@ List<Solde> listSoldes = crudSolde.displaySoldes(ListTerrainController.terrainId
             HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
             ((Text) innerContainer.lookup("#txtMontant")).setText(" Montant :" + solde.getMontant());
             ((Text) innerContainer.lookup("#txtDate")).setText("Date : " + solde.getDate());
-              ((Text) innerContainer.lookup("#txtIdTerrain")).setText("Id_Terrain : " + solde.getId_terrain());
+              ((Text) innerContainer.lookup("#txtIdTerrain")).setText("Id_Terrain : " + solde.getTerrain().getId_terrain());
             ((Pane) innerContainer.lookup("#commentPane")).setVisible(false);
                         ((Button) innerContainer.lookup("#btnUpdate")).setOnAction((event) -> {
                // cs.removeLike(pub.getIdPost());
@@ -96,13 +99,13 @@ List<Solde> listSoldes = crudSolde.displaySoldes(ListTerrainController.terrainId
                 double montant=0;
                 montant= Double.parseDouble(((TextField) innerContainer.lookup("#inputMontant")).getText());
                
-                 crudSolde.modiferSolde(montant,solde.getId_part());
+                 crudSolde.modiferSolde(montant,solde.getId());
             }
             );
 
             ((Button) innerContainer.lookup("#btnDelete")).setOnAction((event) -> {
                 
-                crudSolde.supprimerSolde(solde.getId_part()); 
+                crudSolde.supprimerSolde( solde.getId()); 
             });
            
         } catch (IOException ex) {
@@ -110,7 +113,10 @@ List<Solde> listSoldes = crudSolde.displaySoldes(ListTerrainController.terrainId
         }
         return parent;
     }
-    @FXML
+  
+
+
+      @FXML
     private void retour(ActionEvent event) {
                  try {
                      Parent root = FXMLLoader.load(getClass().getResource("ListTerrain.fxml"));
@@ -124,9 +130,4 @@ List<Solde> listSoldes = crudSolde.displaySoldes(ListTerrainController.terrainId
                     System.out.println(ex.getMessage());
       
     }
-    }
-    
-
-    
-    
-}
+    }}

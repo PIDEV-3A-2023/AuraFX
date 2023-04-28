@@ -6,6 +6,8 @@
 package Services;
 import Entities.Solde;
 import Entities.Terrain;
+import Entities.membre;
+import Services.CrudMembre;
 import Interfaces.InterfaceTerrain ; 
 import Utils.Maconnexion;
 import java.sql.Connection;
@@ -20,6 +22,7 @@ import java.util.List;
  */
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,19 +32,21 @@ Connection conn = Maconnexion.getInstance().getCnx() ;
 
 
     @Override
-    public void ajouterTerrain(Terrain t) {
-    try { 
-         String req = "INSERT INTO `terrain`(`id_terrain`, `adresse`, `surface`, `potentiel`, `id_membre`) VALUES (' "+t.getId_terrain()+"' ,' "+t.getAdresse()+"','" +t.getSurface()+"' , '"+t.getPotentiel()+"' ,' "+t.getId_membre()+"' )" ; 
-        ste=conn.createStatement();
-         ste.executeUpdate(req);
-        System.out.println ("terrain ajouté avec succés !! ") ; 
+   public void ajouterTerrain(Terrain t) {
+    try {
+        String req = "INSERT INTO `terrain`(`id_terrain`, `adresse`, `surface`, `potentiel`, `id_membre`) VALUES (?, ?, ?, ?, ?)";
+        PreparedStatement ps = conn.prepareStatement(req);
+        ps.setInt(1, t.getId_terrain());
+        ps.setString(2, t.getAdresse());
+        ps.setDouble(3, t.getSurface());
+        ps.setDouble(4, t.getPotentiel());
+        ps.setInt(5, t.getMembre().getId_membre()); // Utilisation de l'attribut id_membre de l'objet Membre
+        ps.executeUpdate();
+        System.out.println("Terrain ajouté avec succès !");
     } catch (SQLException ex) {
- System.out.println ("terrain non ajouté !! ") ; 
-      System.out.println(ex.getMessage());
+        System.out.println("Erreur lors de l'ajout du terrain : " + ex.getMessage());
     }
-    }
-    
-    
+}   
     
     @Override
     public void ajouterTerrain2(Terrain t) {
@@ -52,9 +57,9 @@ Connection conn = Maconnexion.getInstance().getCnx() ;
       pst.setInt(1, t.getId_terrain());
      pst.setString(2, t.getAdresse());
       pst.setDouble(3, t.getSurface());
-     pst.setInt(4, t.getId_membre()); 
+     pst.setInt(4, t.getMembre().getId_membre()); 
     
-      
+  
       System.out.println ("terrain ajouté avec succés !! ") ; 
         }catch(SQLException ex ){
             System.out.println ("terrain non ajouté !! ") ; 
@@ -105,8 +110,11 @@ Connection conn = Maconnexion.getInstance().getCnx() ;
          s.setAdresse(RS.getString("adresse"));
         s.setSurface(RS.getDouble(3));
          s.setPotentiel(RS.getDouble(4));
-         s.setId_membre(RS.getInt(5));
-        list.add(s); }}
+     membre m = new membre();
+            m.setId_membre(RS.getInt("id_membre"));
+            s.setMembre(m);
+            list.add(s);
+        }}
      catch(SQLException ex) {
         System.out.println ("ERREUR !!");
       
@@ -144,7 +152,7 @@ Connection conn = Maconnexion.getInstance().getCnx() ;
 }
    
 
-public List<Terrain> displayTerrains() {
+/*public List<Terrain> displayTerrains() {
     List<Terrain> terrains = new ArrayList<>();
     try {
         // Create a SQL statement to select all publications
@@ -174,69 +182,90 @@ public List<Terrain> displayTerrains() {
         System.out.println("Error displaying publications: " + e.getMessage());
     }
     return terrains;
-}
-public List<Terrain> displayTerrainsTrier() {
+}*/
+    public List<Terrain> displayTerrains() {
     List<Terrain> terrains = new ArrayList<>();
     try {
-        // Create a SQL statement to select all publications
-        String sql = "SELECT * FROM terrain order by potentiel DESC";
-
-        // Create a statement object to execute the SQL query
+        String sql = "SELECT t.id_terrain, t.adresse, t.surface, t.potentiel, m.id_membre, m.nom, m.prenom, m.email, m.password, m.date_nais, m.tel, m.adresse, m.role FROM terrain t JOIN membre m ON t.id_membre = m.id_membre";
         Statement statement = conn.createStatement();
-
-        // Execute the SQL statement and get the result set of publications
         ResultSet resultSet = statement.executeQuery(sql);
-        
-        // Print each publication's details to the console
-        while (resultSet.next()) {
-            int id = resultSet.getInt("id_terrain");
-            int idPart = resultSet.getInt("id_membre");
-            double surface = resultSet.getDouble("surface");
-            String adresse = resultSet.getString("adresse");
 
+        while (resultSet.next()) {
+            int id_terrain = resultSet.getInt("id_terrain");
+            String adresse = resultSet.getString("adresse");
+            double surface = resultSet.getDouble("surface");
             double potentiel = resultSet.getDouble("potentiel");
-            Terrain terrain = new Terrain(id, adresse,surface, potentiel,idPart);
-             terrains.add(terrain);
+            int id_membre = resultSet.getInt("id_membre");
+            String nom = resultSet.getString("nom");
+            String prenom = resultSet.getString("prenom");
+            String email = resultSet.getString("email");
+            String password = resultSet.getString("password");
+            Date date_nais = resultSet.getDate("date_nais");
+            String tel = resultSet.getString("tel");
+            String role = resultSet.getString("role");
+
+            membre membre = new membre(id_membre, nom, prenom, email, password, date_nais, tel, adresse, role);
+            Terrain terrain = new Terrain(id_terrain, adresse, surface, potentiel, membre);
+            terrains.add(terrain);
         }
-        
     } catch (SQLException e) {
         System.out.println("Error displaying publications: " + e.getMessage());
     }
     return terrains;
 }
-
-
-public List<Terrain> displayTerrainRecherche(String adressee) {
+public List<Terrain> displayTerrainsTrier() {
     List<Terrain> terrains = new ArrayList<>();
     try {
-        // Create a SQL statement to select all publications
-        String sql = "SELECT * FROM terrain WHERE adresse LIKE ? OR surface LIKE ? OR potentiel LIKE ? ";
-
-        // Create a statement object to execute the SQL query
-        PreparedStatement statement = conn.prepareStatement(sql);
-        statement.setString(1, adressee);
-        statement.setString(2, adressee);
-        
-        statement.setString(3, adressee);
-
-        // Execute the SQL statement and get the result set of publications
-        ResultSet resultSet = statement.executeQuery();
-        
-        // Print each publication's details to the console
+        String sql = "SELECT * FROM terrain ORDER BY potentiel DESC";
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
         while (resultSet.next()) {
-            int id = resultSet.getInt("id_terrain");
-            int idPart = resultSet.getInt("id_membre");
+            int idTerrain = resultSet.getInt("id_terrain");
+            membre membre = new membre();
+            membre.setId_membre(resultSet.getInt("id_membre"));
             double surface = resultSet.getDouble("surface");
             String adresse = resultSet.getString("adresse");
             double potentiel = resultSet.getDouble("potentiel");
-            
-            Terrain terrain = new Terrain(id, adresse,surface, potentiel,idPart);
-            System.out.println(terrain);
-             terrains.add(terrain);
-        }
-        
+            Terrain terrain = new Terrain(idTerrain, adresse, surface, potentiel, membre);
+            terrains.add(terrain);
+        }    
     } catch (SQLException e) {
-        System.out.println("Error displaying publications: " + e.getMessage());
+        System.out.println("Error displaying terrains: " + e.getMessage());
+    }
+    return terrains;
+}
+
+public List<Terrain> displayTerrainRecherche(String adresse) {
+    List<Terrain> terrains = new ArrayList<>();
+    try {
+        // Create a SQL statement to select all terrains matching the given address, surface or potentiel
+        String sql = "SELECT * FROM terrain WHERE adresse LIKE ? OR surface LIKE ? OR potentiel LIKE ?";
+
+        // Create a prepared statement object to execute the SQL query
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1, "%" + adresse + "%");
+        statement.setString(2, "%" + adresse + "%");
+        statement.setString(3, "%" + adresse + "%");
+
+        // Execute the SQL statement and get the result set of terrains
+        ResultSet resultSet = statement.executeQuery();
+
+        // Print each terrain's details to the console
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id_terrain");
+            int idMembre = resultSet.getInt("id_membre");
+            double surface = resultSet.getDouble("surface");
+            String adresseTerrain = resultSet.getString("adresse");
+            double potentiel = resultSet.getDouble("potentiel");
+            CrudMembre cm = new CrudMembre();
+            membre membre = cm.getMembreById(idMembre); // Fetch the corresponding member using the id
+            Terrain terrain = new Terrain(id, adresseTerrain, surface, potentiel, membre);
+            System.out.println(terrain);
+            terrains.add(terrain);
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error displaying terrains: " + e.getMessage());
     }
     return terrains;
 }
@@ -258,14 +287,19 @@ public Terrain getTerrainById(int id) {
         // Check if a publication was found
         if (result.next()) {
             // Print the publication's details
-             int idT = result.getInt("id_terrain");
-        
-        
+            int idT = result.getInt("id_terrain");
             String adresse = result.getString("adresse");
- double surface = result.getDouble("surface");
+            double surface = result.getDouble("surface");
             double potentiel = result.getDouble("potentiel");
-                int idPart = result.getInt("id_membre");
-             terrain = new Terrain(idT, adresse,surface,  potentiel, idPart);
+            int idMembre = result.getInt("id_membre");
+
+            // Retrieve the member associated with the terrain
+                CrudMembre cm = new CrudMembre();
+            membre membre = cm.getMembreById(idMembre); 
+          
+
+            // Create a new Terrain object with the retrieved information
+            terrain = new Terrain(idT, adresse, surface, potentiel, membre);
         } else {
             System.out.println("Terrain not found.");
         }
@@ -274,6 +308,8 @@ public Terrain getTerrainById(int id) {
     }
     return terrain;
 }
+
+   
     }
 
 

@@ -5,78 +5,67 @@
  */
 package Entities;
 
+import java.util.Date; 
+import java.util.logging.Logger;
 /**
  *
  * @author Cyrine
  */
 public class Solde {
-   
-     private int id_part ;
- private int id_terrain;
- private double montant;
- private String  date;
+    private int id;
+    private Terrain terrain;
+    private double montant;
+    private Date date;
 
-    public Solde(double montant) {
-        this.montant = montant;
-    }
-
-
- public Solde(int id_part , int id_terrain, double montant, String date) {
-        this.id_part = id_part ;
-        this.id_terrain = id_terrain;
+    public Solde(int id_part, Terrain terrain, double montant, Date date) {
+        this.id = id_part;
+        this.terrain = terrain;
         this.montant = montant;
         this.date = date;
- }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Terrain getTerrain() {
+        return terrain;
+    }
+
+    public void setTerrain(Terrain terrain) {
+        this.terrain = terrain;
+    }
 
     public Solde() {
-    }
- 
-
-    public Solde(int id_terrain, double  montant, String date) {
-        this.id_terrain = id_terrain;
-        this.montant = montant;
-        this.date = date;
-    }
-
-    public Solde(int id, double montant) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public int getId_part() {
-        return id_part;
-    }
-
-    public int getId_terrain() {
-        return id_terrain;
     }
 
     public double getMontant() {
         return montant;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setId_part(int id_part) {
-        this.id_part = id_part;
-    }
-
-    public void setId_terrain(int id_terrain) {
-        this.id_terrain = id_terrain;
-    }
-
     public void setMontant(double montant) {
         this.montant = montant;
     }
 
-    public void setDate(String date) {
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
         this.date = date;
     }
 
     @Override
     public String toString() {
-        return "Solde{" + "id_part=" + id_part + ", id_terrain=" + id_terrain + ", montant=" + montant + ", date=" + date + '}';
+        return "Solde{" + "id_solde =" + id + ", terrain=" + terrain + ", montant=" + montant + ", date=" + date + '}';
     }
+
+    
+    }
+
+
  
-}
