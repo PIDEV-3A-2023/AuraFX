@@ -16,24 +16,24 @@ public class membre {
    private int id_membre;
  private String nom ;
   private String prenom ;
-      private String EMAIL;
+      private String email;
        private String password;
    private Date date_naissance ;
    
  private String telephone;
  private String adresse;
-   private String cin ;
+   private String role;
 
     public membre(int id_membre, String nom, String prenom, String email, Date date_nais, String tel, String adresse, String cin) {
         this.id_membre = id_membre;
         this.nom = nom;
         this.prenom = prenom;
-        this.EMAIL = email;
+        this.email = email;
          this.password = password;
         this.date_naissance = date_nais;
         this.telephone = tel;
         this.adresse = adresse;
-        this.cin = cin;
+        this.role = role;
     }
 
     public membre() {
@@ -51,7 +51,7 @@ public class membre {
         this.id_membre = id_membre;
         this.nom = nom;
         this.prenom = prenom;
-        this.EMAIL = email;
+        this.email = email;
         this.telephone = tel;
         this.adresse = adresse;
     }
@@ -65,7 +65,7 @@ public class membre {
     }
 
     public String getEmail() {
-        return EMAIL;
+        return email;
     }
 
     public Date getDate_nais() {
@@ -88,8 +88,8 @@ public class membre {
         return adresse;
     }
 
-    public String getCin() {
-        return cin;
+    public String getRole() {
+        return role;
     }
 
     public void setId_membre(int id_membre) {
@@ -105,7 +105,7 @@ public class membre {
     }
 
     public void setEmail(String email) {
-        this.EMAIL= email;
+        this.email= email;
     }
 
     public void setDate_nais(Date date_nais) {
@@ -120,25 +120,25 @@ public class membre {
         this.adresse = adresse;
     }
 
-    public void setCin(String cin) {
-        this.cin = cin;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
     public String toString() {
-        return "membre{" + "id_membre=" + id_membre + ", nom=" + nom + ", prenom=" + prenom + ", email=" + EMAIL + ", password=" + password + ", date_nais=" + date_naissance + ", tel=" + telephone + ", adresse=" + adresse + ", cin=" + cin + '}';
+        return "membre{" + "id_membre=" + id_membre + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", password=" + password + ", date_nais=" + date_naissance + ", tel=" + telephone + ", adresse=" + adresse + ", role=" + role+ '}';
     }
 
     public membre(int id_membre, String nom, String prenom, String email, String password, Date date_nais, String tel, String adresse, String role) {
         this.id_membre = id_membre;
         this.nom = nom;
         this.prenom = prenom;
-        this.EMAIL = email;
+        this.email= email;
         this.password = password;
         this.date_naissance = date_nais;
         this.telephone = tel;
         this.adresse = adresse;
-        this.cin = cin;
+        this.role = role;
     }
 
    
