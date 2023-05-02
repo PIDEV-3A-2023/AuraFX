@@ -1,0 +1,126 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2 mai 2023, 11:16:20
+    Author     : MSI
+*/
+
+/* Apply a background color to the entire VBox */
+/* Set the font for the entire application */
+/* Set the font for the entire application */
+body {
+    font-family: Arial;
+}
+
+/* Apply a background color to the post view section */
+#postView {
+    -fx-background-color: #d5f7e0;
+}
+
+/* Style for the welcome label */
+#postView > Label {
+    font-size: 20pt;
+    font-weight: bold;
+    color: #336699;
+}
+
+/* Style for the search field */
+#searchField {
+    -fx-prompt-text-fill: gray;
+    -fx-background-color: #d5f7e0;
+    -fx-border-color: #9cd3ac;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+/* Style for the carbon estimation button */
+#carbonEstimationButton {
+    -fx-background-color: #009933;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 10px;
+}
+
+/* Style for the post list view */
+#postList {
+    -fx-background-color: #d5f7e0;
+    -fx-border-color: #9cd3ac;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+    
+}
+#postSingle{
+    -fx-background-color: #d5f7e0;
+}
+#titleLabel {
+    -fx-font-family: Arial;
+    -fx-text-fill: #333;
+}
+
+#dateLabel {
+    -fx-font-family: Arial;
+    -fx-font-size: 14pt;
+    -fx-text-fill: #666;
+}
+
+.theme-label {
+ 
+    -fx-font-family: Arial;
+    -fx-font-size: 14pt;
+    -fx-text-fill: #666;
+}
+
+.content-label {
+    -fx-font-family: Arial;
+    -fx-font-size: 14pt;
+    -fx-text-fill: #333;
+}
+
+.commentSection{
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px;
+}
+
+.comment-box {
+    -fx-background-color: #fff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+}
+
+.comment-box .comment-author {
+    -fx-font-family: Arial;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+.comment-box .comment-content {
+    -fx-font-family: Arial;
+    -fx-font-size: 12pt;
+    -fx-text-fill: #333;
+    -fx-font-weight: normal;
+}
+
+.comment-box .comment-date {
+    -fx-font-family: Arial;
+    -fx-font-size: 10pt;
+    -fx-text-fill: #666;
+}
+/* Style for the back button */
+#commentButton {
+    -fx-background-color: #009933;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 10px;
+}
+#backButton {
+    -fx-background-color: #009933;
+    -fx-text-fill: white;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 10px;
+}
