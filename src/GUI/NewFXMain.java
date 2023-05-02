@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -33,8 +34,9 @@ public class NewFXMain extends Application {
               Parent root=FXMLLoader.load(getClass().getResource("postBack.fxml"));
             Scene scene = new Scene(root);
             
-            primaryStage.setTitle("Hello World!");
+            primaryStage.setTitle("SHOW POST");
             primaryStage.setScene(scene);
+            primaryStage.getIcons().add(new Image("/image/logo.png"));
             primaryStage.show();
         } catch (IOException ex) {
             System.err.println(ex.getMessage());
