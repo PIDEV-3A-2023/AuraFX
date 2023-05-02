@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package GUI;
 
-import static controller.RegisterFXMLController.copier;
-import entity.User;
+import static GUI.RegisterFXMLController.copier;
+import entities.User;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,9 +20,13 @@ import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
@@ -32,7 +36,7 @@ import javafx.stage.Window;
 import javafx.util.converter.IntegerStringConverter;
 import org.controlsfx.control.Notifications;
 import org.mindrot.jbcrypt.BCrypt;
-import service.UserService;
+import services.UserService;
 import utils.Sessions;
 
 /**
@@ -63,6 +67,10 @@ public class AcceuilClientController implements Initializable {
         String lien;
         
          UserService us = new UserService();
+    @FXML
+    private Button test;
+    @FXML
+    private TextField idd;
     /**
      * Initializes the controller class.
      */
@@ -91,7 +99,7 @@ public class AcceuilClientController implements Initializable {
             
             imv.setImage(new Image("/gui/img/"+user.getImage()));
             
-        
+        idd.setText(""+Sessions.getLoggedInUser().getId());
     }    
 
     @FXML
@@ -117,7 +125,7 @@ public class AcceuilClientController implements Initializable {
         u.setNom(nom.getText());
         u.setEmail(email.getText());
         u.setPrenom(prenom.getText());
-        u.setTel(Integer.parseInt(tel.getText()));
+        u.setTel(tel.getText());
         u.setAdresse(adresse.getText());
         u.setEmail(email.getText());
         u.setDatenai(dd);
@@ -176,6 +184,17 @@ public class AcceuilClientController implements Initializable {
             return false; // Erreur 
         }
         return true; // Résultat OK   
+    }
+
+    @FXML
+    private void topost(ActionEvent event) {
+        try {
+            //navigation
+            Parent loader = FXMLLoader.load(getClass().getResource("postfront.fxml"));
+            test.getScene().setRoot(loader);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
     
 }

@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
-import entity.User;
+package services;
+import entities.User;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -48,7 +48,7 @@ public class UserService {
         try{
         String req ;
         
-        req="INSERT INTO `user`(`nom`,`prenom`,`email`,`roles`,`password`,`date_nais`,`photo`,`tel`,`adresse`,`is_active`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+        req="INSERT INTO `membre`(`nom`,`prenom`,`email`,`role`,`password`,`date_nais`,`photo`,`tel`,`adresse`,`is_active`) VALUES (?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement res=cnx.prepareStatement(req);
         
         res.setString(1, user.getNom());
@@ -58,7 +58,7 @@ public class UserService {
         res.setString(5, user.getMdp());
         res.setDate(6, (Date) user.getDatenai());
         res.setString(7, user.getImage());  
-        res.setLong(8, user.getTel());
+        res.setString(8, user.getTel());
         res.setString(9, user.getAdresse());
         res.setLong(10, user.getIsavtive());
         verf=res.executeUpdate();
@@ -79,7 +79,7 @@ public class UserService {
         User user = new User();
 
         try {
-            String requete = "select * from user where email='"+email+"'";
+            String requete = "select * from membre where email='"+email+"'";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(requete);
             int count = 0;
@@ -89,10 +89,10 @@ public class UserService {
                 user.setNom(rs.getString("nom"));
                 user.setPrenom(rs.getString("prenom"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("roles"));
+                user.setRole(rs.getString("role"));
                 user.setDatenai(rs.getDate("date_nais"));
                 user.setMdp(rs.getString("password"));
-                user.setTel(rs.getInt("tel"));
+                user.setTel(rs.getString("tel"));
                 user.setAdresse(rs.getString("adresse"));
                 user.setImage(rs.getString("photo"));
                 user.setIsavtive(rs.getInt("is_active"));
@@ -113,7 +113,7 @@ public class UserService {
    
            public boolean modifieUser(User user) throws SQLDataException {
                
-                String query = "UPDATE `user` SET `email`=?,`roles`=?,`nom`=?,`prenom`=?,`date_nais`=?,`tel`=?,`photo`=?,`adresse`=?,`is_active`=? WHERE `id` = ?";
+                String query = "UPDATE `membre` SET `email`=?,`role`=?,`nom`=?,`prenom`=?,`date_nais`=?,`tel`=?,`photo`=?,`adresse`=?,`is_active`=? WHERE `id` = ?";
 		PreparedStatement res;
         try {
                 res = cnx.prepareStatement(query);
@@ -123,7 +123,7 @@ public class UserService {
         res.setString(2, user.getRole());
         res.setDate(5, (Date) user.getDatenai());
         res.setString(7, user.getImage());  
-        res.setLong(6, user.getTel());
+        res.setString(6, user.getTel());
         res.setString(8, user.getAdresse());
         res.setInt(9, user.getIsavtive());
         res.setInt(10, user.getId());
@@ -139,7 +139,7 @@ public class UserService {
            
     public boolean blouer(User user) throws SQLDataException {
                
-                String query = "UPDATE `user` SET `is_active`=? WHERE `id` = ?";
+                String query = "UPDATE `membre` SET `is_active`=? WHERE `id` = ?";
 		PreparedStatement res;
         try {
                 res = cnx.prepareStatement(query);
@@ -157,7 +157,7 @@ public class UserService {
     
         public boolean deblouer(User user) throws SQLDataException {
                
-                String query = "UPDATE `user` SET `is_active`=? WHERE `id` = ?";
+                String query = "UPDATE `membre` SET `is_active`=? WHERE `id` = ?";
 		PreparedStatement res;
         try {
                 res = cnx.prepareStatement(query);
@@ -186,7 +186,7 @@ public class UserService {
         
         int count = 0;
            
-        String requete="select * from user where email='"+email+"' ";
+        String requete="select * from membre where email='"+email+"' ";
         try{
             Statement st = cnx.createStatement();
             ResultSet rsl = st.executeQuery(requete);
@@ -227,7 +227,7 @@ public class UserService {
         List<User> list = new ArrayList<User>();
         int count =0;
         
-        String requete="select * from user";
+        String requete="select * from membre";
          try{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(requete);
@@ -239,10 +239,10 @@ public class UserService {
                 user.setNom(rs.getString("nom"));
                 user.setPrenom(rs.getString("prenom"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("roles"));
+                user.setRole(rs.getString("role"));
                 user.setDatenai(rs.getDate("date_nais"));
                 user.setMdp(rs.getString("password"));
-                user.setTel(rs.getInt("tel"));
+                user.setTel(rs.getString("tel"));
                 user.setAdresse(rs.getString("adresse"));
                 user.setImage(rs.getString("photo"));
                 user.setIsavtive(rs.getInt("is_active"));
@@ -274,7 +274,7 @@ public class UserService {
         User user = new User();
         int count =0;
         
-        String requete="select * from user where id="+id;
+        String requete="select * from membre where id="+id;
          try{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(requete);
@@ -285,10 +285,10 @@ public class UserService {
                 user.setNom(rs.getString("nom"));
                 user.setPrenom(rs.getString("prenom"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("roles"));
+                user.setRole(rs.getString("role"));
                 user.setDatenai(rs.getDate("date_nais"));
                 user.setMdp(rs.getString("password"));
-                user.setTel(rs.getInt("tel"));
+                user.setTel(rs.getString("tel"));
                 user.setAdresse(rs.getString("adresse"));
                 user.setImage(rs.getString("photo"));
                 user.setIsavtive(rs.getInt("is_active"));             
@@ -315,7 +315,7 @@ public class UserService {
         try {
             
             Statement st=cnx.createStatement();
-            String req= "DELETE FROM `user` WHERE `id_c` ="+id;
+            String req= "DELETE FROM `membre` WHERE `id` ="+id;
             st.executeUpdate(req);
             return true;
         } catch (SQLException ex) {
@@ -330,7 +330,7 @@ public class UserService {
         User user = new User();
         
            
-        String requete="select * from user where email='"+email+"' ";
+        String requete="select * from membre where email='"+email+"' ";
         try{
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(requete);
@@ -341,10 +341,10 @@ public class UserService {
                 user.setNom(rs.getString("nom"));
                 user.setPrenom(rs.getString("prenom"));
                 user.setEmail(rs.getString("email"));
-                user.setRole(rs.getString("roles"));
+                user.setRole(rs.getString("role"));
                 user.setDatenai(rs.getDate("date_nais"));
                 user.setMdp(rs.getString("password"));
-                user.setTel(rs.getInt("tel"));
+                user.setTel(rs.getString("tel"));
                 user.setAdresse(rs.getString("adresse"));
                 user.setImage(rs.getString("photo"));
                 user.setIsavtive(rs.getInt("is_active"));  
@@ -361,7 +361,7 @@ public class UserService {
    }
         public boolean modifiePassword(User d) throws SQLDataException {
                
-                String query = "UPDATE `user` SET `password`=? WHERE `id` = ?";
+                String query = "UPDATE `membre` SET `password`=? WHERE `id` = ?";
 		PreparedStatement st;
         try {
                 st = cnx.prepareStatement(query);

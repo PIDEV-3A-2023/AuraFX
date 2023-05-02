@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
+package entities;
 
 import java.util.Date;
 
@@ -14,7 +14,7 @@ import java.util.Date;
 public class User {
     
     private int id ;
-    private int tel ; 
+    private String tel ; 
     private String nom ; 
     private String prenom ;
     private String mdp ;
@@ -43,11 +43,11 @@ public class User {
         this.id = id;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 

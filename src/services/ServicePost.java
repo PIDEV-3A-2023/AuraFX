@@ -8,6 +8,7 @@ import entities.Comment;
 import entities.membre;
 import entities.Post;
 import entities.Rating;
+import entities.User;
 import utils.MaConnection;
 //import com.mysql.cj.xdevapi.Statement;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import utils.Sessions;
 
 /**
  *
@@ -157,7 +159,7 @@ public class ServicePost implements InterfacePost{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 c.setPost(post);
-                membre membre = new membre();
+                User membre = Sessions.getLoggedInUser();
                 membre.setId(rs.getInt(3));
                 c.setMembre(membre);
                 c.setText(rs.getString("Text"));
@@ -249,7 +251,7 @@ public class ServicePost implements InterfacePost{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 r.setPost(post);
-                membre membre = new membre();
+               User membre = Sessions.getLoggedInUser();
                 membre.setId(rs.getInt(3));
                 r.setMembre(membre);
                 r.setRate(rs.getInt("rate"));
@@ -280,7 +282,7 @@ public class ServicePost implements InterfacePost{
                  Post post = new Post();
                 post.setId(rs.getInt(2));
                 r.setPost(post);
-                membre membre = new membre();
+                User membre = Sessions.getLoggedInUser();
                 membre.setId(rs.getInt(3));
                 r.setMembre(membre);
                 r.setRate(rs.getInt("rate"));

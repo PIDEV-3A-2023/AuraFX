@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package GUI;
 
 
-import entity.User;
+import entities.User;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -33,7 +33,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
-import service.UserService;
+import services.UserService;
 
 /**
  * FXML Controller class
@@ -105,7 +105,7 @@ public class AcceuilAdminController implements Initializable {
     private void back113(ActionEvent event) throws IOException{
         
         try {
-          Parent  root = FXMLLoader.load(getClass().getResource("/gui/Login.fxml"));
+          Parent  root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             Stage myWindow = (Stage) back113.getScene().getWindow();
             Scene sc = new Scene(root);
             myWindow.setScene(sc);

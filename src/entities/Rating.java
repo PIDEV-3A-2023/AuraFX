@@ -14,13 +14,13 @@ import java.util.Date;
 public class Rating {
     private int id,rate;
     private Post post;
-    private membre membre;
+    private User membre;
     private Date created_at;
 
     public Rating() {
     }
 
-    public Rating(int id, int rate, Post post, membre membre, Date created_at) {
+    public Rating(int id, int rate, Post post, User membre, Date created_at) {
         this.id = id;
         this.rate = rate;
         this.post = post;
@@ -28,7 +28,7 @@ public class Rating {
         this.created_at = created_at;
     }
 
-    public Rating(int id, int rate, Post post, membre membre) {
+    public Rating(int id, int rate, Post post, User membre) {
         this.id = id;
         this.rate = rate;
         this.post = post;
@@ -67,11 +67,11 @@ public class Rating {
         this.post = post;
     }
 
-    public membre getMembre() {
+    public User getMembre() {
         return membre;
     }
 
-    public void setMembre(membre membre) {
+    public void setMembre(User membre) {
         this.membre = membre;
     }
 

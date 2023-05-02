@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package GUI;
 
 
-import entity.User;
+import entities.User;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -32,7 +32,7 @@ import javafx.stage.Window;
 import javafx.util.converter.IntegerStringConverter;
 import org.controlsfx.control.Notifications;
 import org.mindrot.jbcrypt.BCrypt;
-import service.UserService;
+import services.UserService;
 
 /**
  * FXML Controller class
@@ -118,7 +118,7 @@ public class RegisterFXMLController implements Initializable {
         u.setNom(nom.getText());
         u.setEmail(email.getText());
         u.setPrenom(prenom.getText());
-        u.setTel(Integer.parseInt(tel.getText()));
+        u.setTel(tel.getText());
         copier(pfile, pDir);
         u.setImage(lien);
         u.setAdresse(adresse.getText());

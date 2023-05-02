@@ -15,7 +15,7 @@ public class Post {
     private int id,nbr_Vue;
      private String theme,nom,contenu,image;
     private Date date_Creation;
-    private membre membre;
+    private User membre;
      
 
     
@@ -139,11 +139,11 @@ public class Post {
     public String toString() {
         return "Post{" + "id=" + id + ", theme=" + theme + ", nom=" + nom + ", contenu=" + contenu + ", image=" + image + ", date_Creation=" + date_Creation + '}';
     }
-    public membre getMembre() {
+    public User getMembre() {
         return membre;
     }
 
-    public void setMembre(membre membre) {
+    public void setMembre(User membre) {
         this.membre = membre;
     }
  

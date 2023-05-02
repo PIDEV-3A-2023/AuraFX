@@ -21,7 +21,7 @@ public class DataSource {
     private Connection cnx ;
     public String user= "root" ;
     public String password = "";
-    public String url ="jdbc:mysql://localhost:3306/userproject";
+    public String url ="jdbc:mysql://localhost:3306/aura";
     
     private DataSource()
     {

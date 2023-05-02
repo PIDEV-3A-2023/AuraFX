@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package GUI;
 
 
-import entity.User;
+import entities.User;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -25,7 +25,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import org.mindrot.jbcrypt.BCrypt;
-import service.UserService;
+import services.UserService;
 import utils.Sessions;
 
 /**
@@ -81,7 +81,7 @@ public class LoginController implements Initializable {
         if (BCrypt.checkpw(psw.getText(), result.getMdp().replaceFirst("y","a")))
         {    
    
-                                System.out.println(result.getRole().equals("[\"ROLE_USER\"]"));
+                                System.out.println(result.getRole().equals("membre"));
 
                 if(result.getRole().equals("[\"ROLE_USER\"]")){
                         Sessions.setLoggedInUser(result);
@@ -90,7 +90,7 @@ public class LoginController implements Initializable {
                         Parent root;
                         IdOfUser=result.getId();
                         try {
-                            root = FXMLLoader.load(getClass().getResource("/gui/AcceuilClient.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("AcceuilClient.fxml"));
                             Stage myWindow = (Stage) email.getScene().getWindow();
                             Scene sc = new Scene(root);
                             myWindow.setScene(sc);
@@ -100,13 +100,13 @@ public class LoginController implements Initializable {
                         } catch (IOException ex) {
                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }else if(result.getRole().equals("[\"ROLE_ADMIN\"]")){
+                    }else if(result.getRole().equals("admin")){
                         Sessions.setLoggedInUser(result);
                         // TODO: Proceed to other page
                         Parent root;
                         IdOfUser=0;
                         try {
-                            root = FXMLLoader.load(getClass().getResource("/gui/AllUser.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("AllUser.fxml"));
                             Stage myWindow = (Stage) email.getScene().getWindow();
                             Scene sc = new Scene(root);
                             myWindow.setScene(sc);
@@ -126,7 +126,7 @@ public class LoginController implements Initializable {
 
         else{
 
-           Alert alert22 = new Alert(Alert.AlertType.ERROR, "vérifier vos cordoe", ButtonType.OK);
+           Alert alert22 = new Alert(Alert.AlertType.ERROR, "vérifier vos cordonnées", ButtonType.OK);
                alert22.showAndWait();
 
         }

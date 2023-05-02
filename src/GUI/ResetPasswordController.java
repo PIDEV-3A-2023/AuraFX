@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package GUI;
 
-import static controller.LoginController.IdOfUser;
-import entity.User;
-import entity.mail;
+import static GUI.LoginController.IdOfUser;
+import entities.User;
+import entities.mail;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLDataException;
@@ -26,7 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import org.mindrot.jbcrypt.BCrypt;
-import service.UserService;
+import services.UserService;
 
 /**
  * FXML Controller class

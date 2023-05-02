@@ -13,11 +13,11 @@ import java.util.Date;
 public class Comment {
     private int id;
     private Post post;
-    private membre membre;
+    private User membre;
     private String text;
     private Date date;
 
-    public Comment(int id, Post Post, membre membre, String text, Date date) {
+    public Comment(int id, Post Post, User membre, String text, Date date) {
         this.id = id;
         this.post = Post;
         this.membre = membre;
@@ -25,7 +25,7 @@ public class Comment {
         this.date = date;
     }
 
-    public Comment(Post Post, membre membre, String text, Date date) {
+    public Comment(Post Post, User membre, String text, Date date) {
         this.post = Post;
         this.membre = membre;
         this.text = text;
@@ -89,11 +89,11 @@ public class Comment {
         this.post = post;
     }
 
-    public membre getMembre() {
+    public User getMembre() {
         return membre;
     }
 
-    public void setMembre(membre membre) {
+    public void setMembre(User membre) {
         this.membre = membre;
     }
     

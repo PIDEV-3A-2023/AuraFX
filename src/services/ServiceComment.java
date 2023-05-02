@@ -7,6 +7,7 @@ package services;
 import entities.Comment;
 import entities.membre;
 import entities.Post;
+import entities.User;
 
 
 import utils.MaConnection;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import utils.Sessions;
 
 /**
  *
@@ -31,13 +33,13 @@ public class ServiceComment implements InterfaceComment{
         cnx = MaConnection.getInstance().getCnx();
     }
 
-    public void addComment(Comment c) {
+    public void addComment(Comment c,int id) {
       try {
             PreparedStatement stm = cnx.prepareStatement("insert into commentaire (post_id, membre_id, text, date) values (?,?,?,?)");
             
           
             stm.setInt(1, c.getPost().getId());
-            stm.setInt(2, c.getMembre().getId());
+            stm.setInt(2, /*c.getMembre().getId()15*/id);
             stm.setString(3, c.getText());
             stm.setDate(4,  new java.sql.Date(c.getDate().getTime()));
            
@@ -98,7 +100,8 @@ public class ServiceComment implements InterfaceComment{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 c.setPost(post);
-                membre membre = new membre();
+               User membre = new User();
+               membre = Sessions.getLoggedInUser();
                 membre.setId(rs.getInt(3));
                 c.setMembre(membre);
                 c.setText(rs.getString("Text"));
@@ -128,7 +131,7 @@ public class ServiceComment implements InterfaceComment{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 c.setPost(post);
-                membre membre = new membre();
+               User membre = Sessions.getLoggedInUser();
                 membre.setId(rs.getInt(3));
                 c.setMembre(membre);
                 c.setText(rs.getString("Text"));

@@ -7,6 +7,7 @@ import entities.Rating;
 import services.ServiceComment;
 import services.ServicePost;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import entities.User;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.SQLDataException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +45,8 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -51,6 +55,8 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import services.UserService;
+import utils.Sessions;
 
 
 
@@ -62,10 +68,11 @@ public class SinglePostController implements Initializable {
     private ImageView imageView;
     @FXML
     private Label contentLabel;
+    private UserService us;
 
     private Post post;
     
-    private membre membre;
+    private User membre;
     @FXML
     private Label dateLabel;
     @FXML
@@ -103,7 +110,7 @@ public class SinglePostController implements Initializable {
         this.sc = new ServiceComment();
         this.sp = new ServicePost();
         
-       this.membre = sp.getMemberById(16);
+       this.membre = Sessions.getLoggedInUser();
      
 
     }
@@ -130,7 +137,7 @@ public class SinglePostController implements Initializable {
         commentSection.getChildren().clear();
         List<Comment> comments = sc.displayComments();
         for (Comment comment : comments) {
-            if (comment.getPost().getId() == post.getId()) {
+            if (comment.getPost().getId() == post.getId()||comment.getMembre().getId()==Sessions.getLoggedInUser().getId()) {
                 Label commentLabel = new Label(comment.getText());
                 Button deleteButton = new Button("Delete");
             deleteButton.setOnAction(e -> {
@@ -228,7 +235,9 @@ public class SinglePostController implements Initializable {
                     }
                          } catch (IOException ex) {
         System.out.println("Error checking for bad words: " + ex.getMessage());
-    }
+    }                   catch (SQLDataException ex) {
+                            Logger.getLogger(SinglePostController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 });
             });
@@ -243,7 +252,7 @@ public class SinglePostController implements Initializable {
     }
 
     @FXML
-private void addComment() {
+private void addComment() throws SQLDataException {
 String content = commentTextArea.getText();
 
 
@@ -295,8 +304,8 @@ if (content.isEmpty()) {
 
             // this.post.addComment(c);
            // this.membre.setId(1);
-            c.setMembre(this.membre);
-            sc.addComment(c);
+            c.setMembre(Sessions.getLoggedInUser());
+            sc.addComment(c,Sessions.getLoggedInUser().getId());
             commentTextArea.clear();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Comment saved successfully");
@@ -356,7 +365,7 @@ if (content.isEmpty()) {
 }
 
 
-    private void incrementBadWordCountForMembre() {
+    private void incrementBadWordCountForMembre() throws SQLDataException {
     int badWordCount = 0;
     if (membreBadWordCounts.containsKey(this.membre.getId())) {
         badWordCount = membreBadWordCounts.get(this.membre.getId());
@@ -367,12 +376,14 @@ if (content.isEmpty()) {
     // Check if member should be blocked
     if (badWordCount >= 4) {
        // blockMembre();
+      us.blouer(Sessions.getLoggedInUser());
        
-        sendEmail(this.membre.getMail(), "You have been blocked from posting comments", "Oops.."+this.membre.getPrenom()+", You have been blocked from posting comments due to repeated use of inappropriate language.");
+       
+        sendEmail(this.membre.getEmail(), "You have been blocked from posting comments", "Oops.."+this.membre.getPrenom()+", You have been blocked from posting comments due to repeated use of inappropriate language.");
     } else if (badWordCount == 2) {
       
    // System.out.println(membre.getEmail()); 
-        sendWarningEmail(this.membre.getMail());
+        sendWarningEmail(this.membre.getEmail());
     }
 }
 
@@ -389,7 +400,7 @@ if (content.isEmpty()) {
     }
     
    private void displayRates() {
-    List<Rating> rates = sp.isRatedByUser(post.getId(), 3);
+    List<Rating> rates = sp.isRatedByUser(post.getId(), this.membre.getId());
    // List<Rating> allRates = sp.rates(post.getId());
     boolean hasRated = false;
     
@@ -416,17 +427,17 @@ if (content.isEmpty()) {
 @FXML
 private void rater(ActionEvent event) {
     Date now = new Date();
-    List<Rating> rates = sp.isRatedByUser(post.getId(), 3);
+    List<Rating> rates = sp.isRatedByUser(post.getId(), this.membre.getId());
     boolean hasRated = false;
     for (Rating rate : rates) {
         if (rate.getRate() == 1 && event.getSource() == likeButton) {
-            sp.deleteRate(post.getId(), 3);
+            sp.deleteRate(post.getId(), this.membre.getId());
             likeButton.setStyle("");
             dislikeButton.setDisable(false);
             displayRates();
             hasRated = true;
         } else if (rate.getRate() == -1 && event.getSource() == dislikeButton) {
-            sp.deleteRate(post.getId(), 3);
+            sp.deleteRate(post.getId(), this.membre.getId());
             dislikeButton.setStyle("");
             likeButton.setDisable(false);
             displayRates();
@@ -436,13 +447,13 @@ private void rater(ActionEvent event) {
 
     if (!hasRated) {
         if (event.getSource() == likeButton) {
-            sp.addRate(post.getId(), 3, 1, now);
+            sp.addRate(post.getId(), this.membre.getId(), 1, now);
             likeLabel.setText(String.valueOf(sp.getLikeCount(post.getId())));
             dislikeLabel.setText(String.valueOf(sp.getDislikeCount(post.getId())));
             likeButton.setStyle("-fx-background-color: blue;");
             dislikeButton.setDisable(true);
             likeButton.setOnAction(e -> {
-                sp.deleteRate(post.getId(), 3);
+                sp.deleteRate(post.getId(), this.membre.getId());
                 likeLabel.setText(String.valueOf(sp.getLikeCount(post.getId())));
                 dislikeLabel.setText(String.valueOf(sp.getDislikeCount(post.getId())));
                 likeButton.setStyle("");
@@ -454,13 +465,13 @@ private void rater(ActionEvent event) {
             alert.setContentText("Thanks for rating this post.");
             alert.showAndWait();
         } else if (event.getSource() == dislikeButton) {
-            sp.addRate(post.getId(), 3, -1, now);
+            sp.addRate(post.getId(), this.membre.getId(), -1, now);
             likeLabel.setText(String.valueOf(sp.getLikeCount(post.getId())));
             dislikeLabel.setText(String.valueOf(sp.getDislikeCount(post.getId())));
             dislikeButton.setStyle("-fx-background-color: blue;");
             likeButton.setDisable(true);
             dislikeButton.setOnAction(e -> {
-                sp.deleteRate(post.getId(), 3);
+                sp.deleteRate(post.getId(), this.membre.getId());
                 likeLabel.setText(String.valueOf(sp.getLikeCount(post.getId())));
                 dislikeLabel.setText(String.valueOf(sp.getDislikeCount(post.getId())));
                 dislikeButton.setStyle("");
