@@ -5,9 +5,9 @@
  */
 package GUI;
 
-import Entities.Post;
-import Entities.Rating;
-import Services.ServicePost;
+import entities.Post;
+import entities.Rating;
+import services.ServicePost;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;

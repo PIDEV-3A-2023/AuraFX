@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Entities;
+package entities;
 
 import java.util.Date;
 
@@ -13,11 +13,11 @@ import java.util.Date;
 public class Comment {
     private int id;
     private Post post;
-    private Membre membre;
+    private membre membre;
     private String text;
     private Date date;
 
-    public Comment(int id, Post Post, Membre membre, String text, Date date) {
+    public Comment(int id, Post Post, membre membre, String text, Date date) {
         this.id = id;
         this.post = Post;
         this.membre = membre;
@@ -25,7 +25,7 @@ public class Comment {
         this.date = date;
     }
 
-    public Comment(Post Post, Membre membre, String text, Date date) {
+    public Comment(Post Post, membre membre, String text, Date date) {
         this.post = Post;
         this.membre = membre;
         this.text = text;
@@ -89,11 +89,11 @@ public class Comment {
         this.post = post;
     }
 
-    public Membre getMembre() {
+    public membre getMembre() {
         return membre;
     }
 
-    public void setMembre(Membre membre) {
+    public void setMembre(membre membre) {
         this.membre = membre;
     }
     

@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Services;
+package services;
 
-import Entities.Comment;
-import Entities.Membre;
-import Entities.Post;
-import Entities.Rating;
-import Interfaces.InterfacePost;
-import Utils.MyConnection;
+import entities.Comment;
+import entities.membre;
+import entities.Post;
+import entities.Rating;
+import utils.MaConnection;
 //import com.mysql.cj.xdevapi.Statement;
 import java.util.List;
 import java.sql.SQLException;
@@ -32,7 +31,7 @@ public class ServicePost implements InterfacePost{
     Connection cnx;
     
      public ServicePost() {
-        cnx = MyConnection.getInstance().getCnx();
+        cnx = MaConnection.getInstance().getCnx();
     }
 
     @Override
@@ -55,7 +54,25 @@ public class ServicePost implements InterfacePost{
             System.out.println(ex.getMessage());
         }
     }
-
+    public void addPost1(Post p) {
+        try {
+            PreparedStatement stm = cnx.prepareStatement("insert into post (theme, nom, contenu, image,date_Creation) values (?,?,?,?,?)");
+            
+          
+            stm.setString(1, p.getTheme());
+            stm.setString(2, p.getNom());
+            stm.setString(3, p.getContenu());
+            stm.setString(4, p.getImage());
+           stm.setDate(5, new java.sql.Date(p.getDate_Creation().getTime()) );
+                       
+            stm.executeUpdate();
+            
+            System.out.println("Post ajouté avec succés!!!");
+          
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     @Override
     public void deletePost(int id) {   
         
@@ -140,7 +157,7 @@ public class ServicePost implements InterfacePost{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 c.setPost(post);
-                Membre membre = new Membre();
+                membre membre = new membre();
                 membre.setId(rs.getInt(3));
                 c.setMembre(membre);
                 c.setText(rs.getString("Text"));
@@ -157,24 +174,24 @@ public class ServicePost implements InterfacePost{
         }
         return cmnts.size(); 
     }
-     public Membre getMemberById (int id){
-         Membre m = null;
+     public membre getMemberById (int id){
+         membre m = null;
         try {
             String req = "select * from membre where id = " +id+"";
             Statement st = cnx.createStatement();
             ResultSet rs = st.executeQuery(req);
 
             while (rs.next()) {
-            m = new Membre();
+            m = new membre();
                 m.setId(rs.getInt(1));
                 m.setNom(rs.getString("nom"));
                 m.setPrenom(rs.getString("prenom"));
-                m.setEmail(rs.getString("email"));
-                m.setPassword(rs.getString("password"));
+                m.setMail(rs.getString("email"));
+               /* m.setPassword(rs.getString("password"));
                 m.setTel(rs.getString("tel"));
                 m.setAdresse(rs.getString("adresse"));
                m.setRole(rs.getString("role"));
-               m.setDateNaiss(rs.getDate("date_nais"));
+               m.setDateNaiss(rs.getDate("date_nais"));*/
                
     
             }
@@ -232,7 +249,7 @@ public class ServicePost implements InterfacePost{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 r.setPost(post);
-                Membre membre = new Membre();
+                membre membre = new membre();
                 membre.setId(rs.getInt(3));
                 r.setMembre(membre);
                 r.setRate(rs.getInt("rate"));
@@ -263,7 +280,7 @@ public class ServicePost implements InterfacePost{
                  Post post = new Post();
                 post.setId(rs.getInt(2));
                 r.setPost(post);
-                Membre membre = new Membre();
+                membre membre = new membre();
                 membre.setId(rs.getInt(3));
                 r.setMembre(membre);
                 r.setRate(rs.getInt("rate"));

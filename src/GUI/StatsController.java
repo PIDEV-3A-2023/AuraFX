@@ -5,8 +5,8 @@
  */
 package GUI;
 
-import Entities.Post;
-import Services.ServicePost;
+import entities.Post;
+import services.ServicePost;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;

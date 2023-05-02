@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package entities;
 
 import java.util.Date;
 
@@ -14,13 +14,13 @@ import java.util.Date;
 public class Rating {
     private int id,rate;
     private Post post;
-    private Membre membre;
+    private membre membre;
     private Date created_at;
 
     public Rating() {
     }
 
-    public Rating(int id, int rate, Post post, Membre membre, Date created_at) {
+    public Rating(int id, int rate, Post post, membre membre, Date created_at) {
         this.id = id;
         this.rate = rate;
         this.post = post;
@@ -28,7 +28,7 @@ public class Rating {
         this.created_at = created_at;
     }
 
-    public Rating(int id, int rate, Post post, Membre membre) {
+    public Rating(int id, int rate, Post post, membre membre) {
         this.id = id;
         this.rate = rate;
         this.post = post;
@@ -67,11 +67,11 @@ public class Rating {
         this.post = post;
     }
 
-    public Membre getMembre() {
+    public membre getMembre() {
         return membre;
     }
 
-    public void setMembre(Membre membre) {
+    public void setMembre(membre membre) {
         this.membre = membre;
     }
 

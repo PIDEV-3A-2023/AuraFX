@@ -4,9 +4,9 @@
  */
 package GUI;
 
-import Entities.Comment;
-import Entities.Post;
-import Services.ServicePost;
+import entities.Comment;
+import entities.Post;
+import services.ServicePost;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -159,7 +159,7 @@ public class PostAddController  {
           post.setNom(nom);
           post.setContenu(content);
       
-        postService.addPost(post);
+        postService.addPost1(post);
 
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

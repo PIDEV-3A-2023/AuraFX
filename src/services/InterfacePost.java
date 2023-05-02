@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package Interfaces;
+package services;
 
-import Entities.Post;
-import Entities.Rating;
+import entities.Post;
+import entities.Rating;
 import java.util.List;
 import javafx.collections.ObservableList;
 

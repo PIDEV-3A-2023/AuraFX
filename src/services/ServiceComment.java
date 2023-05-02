@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Services;
+package services;
 
-import Entities.Comment;
-import Entities.Membre;
-import Entities.Post;
+import entities.Comment;
+import entities.membre;
+import entities.Post;
 
-import Interfaces.InterfaceComment;
-import Utils.MyConnection;
+
+import utils.MaConnection;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -28,10 +28,9 @@ public class ServiceComment implements InterfaceComment{
     Connection cnx;
     
      public ServiceComment() {
-        cnx = MyConnection.getInstance().getCnx();
+        cnx = MaConnection.getInstance().getCnx();
     }
 
-    @Override
     public void addComment(Comment c) {
       try {
             PreparedStatement stm = cnx.prepareStatement("insert into commentaire (post_id, membre_id, text, date) values (?,?,?,?)");
@@ -52,7 +51,6 @@ public class ServiceComment implements InterfaceComment{
     
     }
 
-    @Override
     public void deleteComment(int id) {
             
      try
@@ -68,7 +66,6 @@ public class ServiceComment implements InterfaceComment{
         
     }
 
-    @Override
     public void updateComment(Comment c) {
        
            try {
@@ -87,7 +84,6 @@ public class ServiceComment implements InterfaceComment{
         
     }
 
-    @Override
     public List<Comment> displayComments() {
        
          List<Comment> cmnts = new ArrayList<>();
@@ -102,7 +98,7 @@ public class ServiceComment implements InterfaceComment{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 c.setPost(post);
-                Membre membre = new Membre();
+                membre membre = new membre();
                 membre.setId(rs.getInt(3));
                 c.setMembre(membre);
                 c.setText(rs.getString("Text"));
@@ -132,7 +128,7 @@ public class ServiceComment implements InterfaceComment{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 c.setPost(post);
-                Membre membre = new Membre();
+                membre membre = new membre();
                 membre.setId(rs.getInt(3));
                 c.setMembre(membre);
                 c.setText(rs.getString("Text"));
@@ -146,6 +142,8 @@ public class ServiceComment implements InterfaceComment{
     }
     return searchResults;
 }
+
+    
 
     
 }

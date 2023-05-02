@@ -72,6 +72,9 @@ public class membre {
     public String toString() {
         return "membre{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", mail=" + mail + ", mdp=" + mdp + '}';
     }
+
+    public membre() {
+    }
     
     
 }

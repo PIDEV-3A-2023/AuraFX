@@ -5,10 +5,10 @@
  */
 package GUI;
 
-import Entities.Comment;
-import Entities.Post;
-import Services.ServiceComment;
-import Services.ServicePost;
+import entities.Comment;
+import entities.Post;
+import services.ServiceComment;
+import services.ServicePost;
 import java.net.URL;
 import static java.nio.file.Files.list;
 import java.util.Date;

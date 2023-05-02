@@ -1,11 +1,11 @@
 package GUI;
 
-import Entities.Comment;
-import Entities.Membre;
-import Entities.Post;
-import Entities.Rating;
-import Services.ServiceComment;
-import Services.ServicePost;
+import entities.Comment;
+import entities.membre;
+import entities.Post;
+import entities.Rating;
+import services.ServiceComment;
+import services.ServicePost;
 import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import java.io.BufferedReader;
 import java.io.File;
@@ -65,7 +65,7 @@ public class SinglePostController implements Initializable {
 
     private Post post;
     
-    private Membre membre;
+    private membre membre;
     @FXML
     private Label dateLabel;
     @FXML
@@ -103,7 +103,7 @@ public class SinglePostController implements Initializable {
         this.sc = new ServiceComment();
         this.sp = new ServicePost();
         
-       this.membre = sp.getMemberById(1);
+       this.membre = sp.getMemberById(16);
      
 
     }
@@ -368,11 +368,11 @@ if (content.isEmpty()) {
     if (badWordCount >= 4) {
        // blockMembre();
        
-        sendEmail(this.membre.getEmail(), "You have been blocked from posting comments", "Oops.."+this.membre.getPrenom()+", You have been blocked from posting comments due to repeated use of inappropriate language.");
+        sendEmail(this.membre.getMail(), "You have been blocked from posting comments", "Oops.."+this.membre.getPrenom()+", You have been blocked from posting comments due to repeated use of inappropriate language.");
     } else if (badWordCount == 2) {
       
    // System.out.println(membre.getEmail()); 
-        sendWarningEmail(this.membre.getEmail());
+        sendWarningEmail(this.membre.getMail());
     }
 }
 

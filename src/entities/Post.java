@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Entities;
+package entities;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +15,7 @@ public class Post {
     private int id,nbr_Vue;
      private String theme,nom,contenu,image;
     private Date date_Creation;
-    private Membre membre;
+    private membre membre;
      
 
     
@@ -139,11 +139,11 @@ public class Post {
     public String toString() {
         return "Post{" + "id=" + id + ", theme=" + theme + ", nom=" + nom + ", contenu=" + contenu + ", image=" + image + ", date_Creation=" + date_Creation + '}';
     }
-    public Membre getMembre() {
+    public membre getMembre() {
         return membre;
     }
 
-    public void setMembre(Membre membre) {
+    public void setMembre(membre membre) {
         this.membre = membre;
     }
  
