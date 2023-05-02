@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/EmailSender.java</file>
             <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/produitservice.java</file>
             <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/SinglefactureController.java</file>
@@ -16,6 +17,50 @@
             <file>file:/C:/Users/azerb/Desktop/AuraFX/src/entities/membre.java</file>
             <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/panier.java</file>
             <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/UserService.java</file>
+=======
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/ResetPasswordController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/PostFrontController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/AllUser.fxml</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/produitservice.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/ServicePost.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/utils/Sessions.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/categorieInterface.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/PostBackController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/entities/Rating.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/utils/MaConnection.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/ServiceComment.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/InterfacePost.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/RegisterFXML.fxml</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/entities/achat.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/produitInterface.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/PostBack.fxml</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/PostAddController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/PanierController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/entities/membre.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/AcceuilClientController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/entities/Post.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/ResetPassword.fxml</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/UserService.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/entities/User.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/EmailSender.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/SinglefactureController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/RegisterFXMLController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/entities/mail.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/AcceuilAdminController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/ShowCommentBackController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/EditPostController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/SinglePostController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/SingleproduitController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/Login.fxml</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/entities/Comment.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/InterfaceComment.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/utils/DataSource.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/LoginController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/StatsController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/services/panier.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/AcceuilClient.fxml</file>
+>>>>>>> main
             <file>file:/C:/Users/azerb/Desktop/AuraFX/src/test/MainClass.java</file>
         </group>
     </open-files>

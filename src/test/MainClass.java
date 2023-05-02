@@ -13,6 +13,7 @@ import entities.produit;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import javax.mail.MessagingException;
 import services.EmailSender;
 import services.achatservice;
 import services.categorieservice;
@@ -26,7 +27,7 @@ import utils.MaConnection;
  * @author azerb
  */
 public class MainClass {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MessagingException {
        // MaConnection m = new MaConnection();
        categorie c =new categorie(11,"azer","ggg",8);
        //categorieservice cs= new categorieservice();
@@ -51,9 +52,9 @@ public class MainClass {
        //System.out.print(""+as.achatparcat(9));
        //pdf pd =new pdf();
        //pdf.generer("", "", "", "", "");
-       pdf.genererFacturesansouvrir("0069", 50, date, as.achatparfact(41));
+      // pdf.genererFacturesansouvrir("0069", 50, date, as.achatparfact(41));
       // EmailSender.with("azerbennasr@gmail.com", "Subject", "Message body");
-     
+//     EmailSender.sendEmail("azerbennasr@gmail.com", "Subject", "Message body");
        
     }
 }

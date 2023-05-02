@@ -44,7 +44,8 @@ try {
             System.out.println("produit ajoutée");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-        }    }
+        }    
+    }
 
     @Override
     public List<produit> getAll() {
