@@ -11,9 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="689.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginController">
- <stylesheets>
-        <URL value="@fxml.css" />
-    </stylesheets>  
+ 
     <children>
       <AnchorPane layoutX="-1.0" layoutY="2.0" prefHeight="766.0" prefWidth="1116.0">
          <children>
@@ -32,7 +30,7 @@
                   <Font size="22.0" />
                </font>
             </Label>
-            <TextField fx:id="email" layoutX="704.0" layoutY="297.0" prefHeight="38.0" prefWidth="308.0" stylesheets="@fxml.css">
+            <TextField fx:id="email" layoutX="704.0" layoutY="297.0" prefHeight="38.0" prefWidth="308.0" >
                <effect>
                   <Glow />
                </effect></TextField>

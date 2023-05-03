@@ -19,12 +19,12 @@
       <TextField fx:id="prenom" layoutX="255.0" layoutY="214.0" prefHeight="25.0" prefWidth="191.0" />
       <TextField fx:id="email" layoutX="252.0" layoutY="283.0" prefHeight="25.0" prefWidth="191.0" />
       <TextField fx:id="tel" layoutX="252.0" layoutY="336.0" prefHeight="25.0" prefWidth="191.0" />
-      <Button layoutX="430.0" layoutY="620.0" mnemonicParsing="false" onAction="#Enregistrer" styleClass="l" stylesheets="@fxml.css" text="Enregistrer" />
+      <Button layoutX="430.0" layoutY="620.0" mnemonicParsing="false" onAction="#Enregistrer" styleClass="l"  text="Enregistrer" />
       <DatePicker fx:id="datenai" layoutX="255.0" layoutY="405.0" prefHeight="25.0" prefWidth="191.0" />
       <TextField fx:id="adresse" layoutX="255.0" layoutY="467.0" prefHeight="25.0" prefWidth="191.0" />
       <Label layoutX="116.0" layoutY="471.0" text="Adresse" />
       <ImageView fx:id="imv" fitHeight="150.0" fitWidth="200.0" layoutX="626.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
-      <Button layoutX="689.0" layoutY="302.0" mnemonicParsing="false" onAction="#Upload" styleClass="l" stylesheets="@fxml.css" text="Upload" />
+      <Button layoutX="689.0" layoutY="302.0" mnemonicParsing="false" onAction="#Upload" styleClass="l"  text="Upload" />
       <Label layoutX="432.0" layoutY="57.0" prefHeight="17.0" prefWidth="42.0" text="Profil">
          <font>
             <Font name="System Bold" size="16.0" />

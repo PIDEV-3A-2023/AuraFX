@@ -12,7 +12,7 @@
    <children>
       <AnchorPane prefHeight="689.0" prefWidth="1099.0">
          <children>
-            <TableView fx:id="table" layoutX="225.0" layoutY="296.0" prefHeight="200.0" prefWidth="734.0" styleClass="x" stylesheets="@fxml.css">
+            <TableView fx:id="table" layoutX="225.0" layoutY="296.0" prefHeight="200.0" prefWidth="734.0"  >
               <columns>
                 <TableColumn fx:id="nom" prefWidth="146.0" text="First Name" />
                 <TableColumn fx:id="prenom" prefWidth="125.0" text="Last Name" />
@@ -22,7 +22,7 @@
                   <TableColumn fx:id="date" prefWidth="130.0" text="Date de naissance" />
               </columns>
             </TableView>
-            <AnchorPane prefHeight="200.0" prefWidth="1099.0" styleClass="m" stylesheets="@fxml.css">
+            <AnchorPane prefHeight="200.0" prefWidth="1099.0" >
                <children>
                   <Label layoutX="493.0" layoutY="81.0" text="All Users" textFill="#363333">
                      <font>
@@ -31,7 +31,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button fx:id="back113" layoutX="62.0" layoutY="625.0" mnemonicParsing="false" onAction="#back113" styleClass="button_add" stylesheets="@fxml.css" text="Logout" />
+            <Button fx:id="back113" layoutX="62.0" layoutY="625.0" mnemonicParsing="false" onAction="#back113" styleClass="button_add"  text="Logout" />
             <Button layoutX="498.0" layoutY="534.0" mnemonicParsing="false" onAction="#blocker" text="Block" />
             <Button layoutX="615.0" layoutY="534.0" mnemonicParsing="false" onAction="#Deblocker" text="Deblock" />
             <TextField fx:id="recherche" layoutX="225.0" layoutY="228.0" onAction="#recherche" />

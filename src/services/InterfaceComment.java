@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface InterfaceComment {
     
-     public void addComment(Comment c,int id);
+     public void addComment(Comment c);
     public void deleteComment(int id);
     public void updateComment(Comment c);
     public List<Comment> displayComments();
