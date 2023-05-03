@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import utils.MyConnection;
+import utils.MaConnection;
 
 /**
  *
@@ -21,7 +21,7 @@ import utils.MyConnection;
  */
 public class CRUDterrain {
     Statement ste;
-    Connection connection = MyConnection.getInstance().getConnection();
+    Connection connection = MaConnection.getInstance().getCnx();
     public List<Terrain> afficherTerrain() {
 
         List<Terrain> terrains = new ArrayList<>();

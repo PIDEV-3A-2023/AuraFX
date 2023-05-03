@@ -22,7 +22,7 @@ import java.sql.PreparedStatement;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
-import utils.MyConnection;
+import utils.MaConnection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
@@ -33,7 +33,7 @@ public class CRUDaffectations implements InterfaceAffectations <Affectations> {
     Connection connection;
     
     public CRUDaffectations() {
-        connection = MyConnection.getInstance().getConnection();
+        connection = MaConnection.getInstance().getCnx();
     }
     
     

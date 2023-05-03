@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.PreparedStatement;
 import java.util.List;
-import utils.MyConnection;
+import utils.MaConnection;
 import javafx.collections.FXCollections;
 import static jdk.nashorn.internal.runtime.Debug.id;
 import static org.omg.CORBA.AnySeqHelper.id;
@@ -32,7 +32,7 @@ public class CRUDtechnicien implements InterfaceTechnicien <Technicien>{
     Connection connection;
 
     public CRUDtechnicien() {
-        connection = MyConnection.getInstance().getConnection();
+        connection = MaConnection.getInstance().getCnx();
     }
     @Override
     public void ajouterTechnicien(Technicien t) {

@@ -65,10 +65,20 @@ public class Email {
 
         // Setup properties for the SMTP server
         Properties properties = new Properties();
-        properties.put("mail.smtp.host", SMTP_HOST);
+       /* properties.put("mail.smtp.host", SMTP_HOST);
         properties.put("mail.smtp.port", SMTP_PORT);
         properties.put("mail.smtp.auth", "true");
-        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.starttls.enable", "true");*/
+       properties.put("com.hof.email.starttime","20170519094544");
+        properties.put("mail.smtp.auth","true");
+        properties.put("mail.smtp.connectiontimeout","60000");
+        properties.put("mail.smtp.host","smtp.gmail.com");
+        properties.put("mail.smtp.port","25");
+        properties.put("mail.smtp.ssl.trust","*");
+        properties.put("mail.smtp.starttls.enable","true");
+        properties.put("mail.smtp.timeout","60000");
+        properties.put("mail.transport.protocol","smtp");
+        properties.put("mail.smtp.ssl.protocols", "TLSv1.2");
 
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override

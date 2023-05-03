@@ -36,7 +36,7 @@ import services.CRUDterrain;
  *
  * @author issamfekih.if
  */
-public class Stat implements Initializable {
+public class Statistique implements Initializable {
     
     String f;
     double r;

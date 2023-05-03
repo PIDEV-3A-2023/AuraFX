@@ -32,8 +32,9 @@ public class NewFXMain extends Application {
             // Parent root=FXMLLoader.load(getClass().getResource("postfront.fxml"));
             // Parent root=FXMLLoader.load(getClass().getResource("ShowCommentBack.fxml"));
            //   Parent root=FXMLLoader.load(getClass().getResource("postBack.fxml"));
-             Parent root=FXMLLoader.load(getClass().getResource("login.fxml"));
+            // Parent root=FXMLLoader.load(getClass().getResource("login.fxml"));
            //    Parent root=FXMLLoader.load(getClass().getResource("alluser.fxml"));
+           Parent root=FXMLLoader.load(getClass().getResource("Technicien.fxml"));
             Scene scene = new Scene(root);
             Application.setUserAgentStylesheet(null);
             primaryStage.setTitle("SHOW POST");
