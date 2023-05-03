@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="Anchor" stylesheets="@DESIGN.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ListeTechnicienController">
+   <children>
+      <Pagination fx:id="pagination" layoutX="4.0" layoutY="58.0" prefHeight="340.0" prefWidth="594.0" />
+      <TableView fx:id="tvListe" layoutX="3.0" layoutY="67.0" prefHeight="295.0" prefWidth="594.0">
+        <columns>
+          <TableColumn fx:id="LIDTechnicien" prefWidth="88.5" styleClass="Liste" text="ID Technicien" />
+          <TableColumn fx:id="LNom" prefWidth="62.5" styleClass="Liste" text="Nom" />
+            <TableColumn fx:id="LPrenom" prefWidth="81.0" styleClass="Liste" text="Prenom" />
+            <TableColumn fx:id="LTelephone" prefWidth="83.5" styleClass="Liste" text="Telephone" />
+            <TableColumn fx:id="LEmail" prefWidth="130.5" styleClass="Liste" text="Email" />
+            <TableColumn fx:id="LSpecialite" prefWidth="73.5" styleClass="Liste" text="Specialite" />
+            <TableColumn fx:id="LSalaire" prefWidth="73.5" styleClass="Liste" text="Salaire" />
+        </columns>
+      </TableView>
+      <Button fx:id="AURAHome" layoutX="13.0" layoutY="21.0" mnemonicParsing="false" onAction="#AURAHome" styleClass="Button" text="AURA" />
+      <Button fx:id="BackT" layoutX="487.0" layoutY="21.0" mnemonicParsing="false" onAction="#BackT" styleClass="Button" text="Back" />
+      <Button fx:id="ftupdate" layoutX="124.0" layoutY="21.0" mnemonicParsing="false" onAction="#updateTechnicien" styleClass="Button" text="Update" />
+      <Button fx:id="ftdelete" layoutX="240.0" layoutY="21.0" mnemonicParsing="false" onAction="#deleteTechnicien" styleClass="Button" text="Delete" />
+      <Button fx:id="email" layoutX="361.0" layoutY="21.0" mnemonicParsing="false" onAction="#emailt" styleClass="Button" stylesheets="@DESIGN.css" text="Email" />
+   </children>
+</AnchorPane>
