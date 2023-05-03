@@ -39,7 +39,7 @@ public class MainClass {
         //ps.modifier("azer", "ggg", "hhh", 0, 0, c,p);
         //ps.supprimer(p);
         //cs.modifier("zzz", "zzz", 0, c);
-        membre m =new membre(16);
+        User m =new User(16);
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
         String formattedDate = localDate.format(formatter);

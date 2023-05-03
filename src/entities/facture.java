@@ -13,18 +13,18 @@ import java.sql.Date;
  */
 public class facture {
     int id;
-    membre m;
+    User m;
     float montant;
     Date date;
 
-    public facture(int id, membre m, float montant, Date date) {
+    public facture(int id, User m, float montant, Date date) {
         this.id = id;
         this.m = m;
         this.montant = montant;
         this.date = date;
     }
 
-    public facture(membre m, float montant, Date date) {
+    public facture(User m, float montant, Date date) {
         this.m = m;
         this.montant = montant;
         this.date = date;
@@ -38,11 +38,11 @@ public class facture {
         this.id = id;
     }
 
-    public membre getM() {
+    public User getM() {
         return m;
     }
 
-    public void setM(membre m) {
+    public void setM(User m) {
         this.m = m;
     }
 

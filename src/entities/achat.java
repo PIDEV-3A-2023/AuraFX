@@ -12,12 +12,12 @@ package entities;
 public class achat {
     int id;
     facture facture;
-    membre membre;
+    User membre;
     produit produit;
     int nbr;
     float prix;
 
-    public achat(int id, facture facture, membre membre, produit produit, int nbr, float prix) {
+    public achat(int id, facture facture, User membre, produit produit, int nbr, float prix) {
         this.id = id;
         this.facture = facture;
         this.membre = membre;
@@ -26,7 +26,7 @@ public class achat {
         this.prix = prix;
     }
 
-    public achat(facture facture, membre membre, produit produit, int nbr, float prix) {
+    public achat(facture facture, User membre, produit produit, int nbr, float prix) {
         this.facture = facture;
         this.membre = membre;
         this.produit = produit;
@@ -57,11 +57,11 @@ public class achat {
         this.facture = facture;
     }
 
-    public membre getMembre() {
+    public User getMembre() {
         return membre;
     }
 
-    public void setMembre(membre membre) {
+    public void setMembre(User membre) {
         this.membre = membre;
     }
 

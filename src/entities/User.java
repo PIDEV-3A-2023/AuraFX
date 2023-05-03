@@ -129,6 +129,13 @@ public class User {
     public String toString() {
         return "User{" + "id=" + id + ", tel=" + tel + ", nom=" + nom + ", prenom=" + prenom + ", mdp=" + mdp + ", email=" + email + ", role=" + role +", datenai=" + datenai + ", image=" + image + ", isavtive=" + isavtive + '}';
     }
+
+    public User(int id, String nom, String prenom, String email) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+    }
     
     
     
