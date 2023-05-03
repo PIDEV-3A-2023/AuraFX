@@ -141,12 +141,15 @@ public class SinglePostController implements Initializable {
         for (Comment comment : comments) {
             if (comment.getPost().getId() == post.getId()) {
                  Label commentLabel = new Label(comment.getText());
+                 commentLabel.setStyle("-fx-font-family: 'Open Sans', sans-serif; -fx-font-size: 13pt; -fx-text-fill: #222222;");
             VBox commentBox = new VBox(commentLabel);
             commentBox.setSpacing(5);
                commentSection.getChildren().add(commentBox);
                System.out.println(panier.getInstance().getId());
                 if(comment.getMembre().getId()==panier.getInstance().getId()){
-                Button deleteButton = new Button("Delete");
+                Button deleteButton = new Button("DELETE");
+               deleteButton.setStyle("-fx-background-color: red; -fx-font-family: 'Arial'; -fx-font-size: 12pt; -fx-text-fill: white;");
+
             deleteButton.setOnAction(e -> {
                 
                 
@@ -175,7 +178,8 @@ public class SinglePostController implements Initializable {
         }
             });
             
-                 Button updateButton = new Button("Update");
+                 Button updateButton = new Button("UPDATE");
+                 updateButton.setStyle("-fx-background-color: #17a2b8; -fx-font-family: 'Arial'; -fx-font-size: 12pt; -fx-text-fill: white;");
             updateButton.setOnAction(e -> {
                 TextArea editCommentArea = new TextArea(comment.getText());
                 Button saveButton = new Button("Save");
@@ -203,8 +207,8 @@ public class SinglePostController implements Initializable {
                         URL url = new URL("https://neutrinoapi.net/bad-word-filter");
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("GET");
-                        connection.setRequestProperty("User-ID", "rrr");
-                        connection.setRequestProperty("API-Key", "3b8j6yd1XZ8igQbWMznsJsb3OcBOswEg932B9qmZNyvDaz2d");
+                        connection.setRequestProperty("User-ID", "leoo10");
+                        connection.setRequestProperty("API-Key", "HA5e6GzK9rJBTnI1y3Tk70Y9tdmbptkR8NOr6Oa70412SZHR");
                         
                         // Send request content
                        connection.setDoOutput(true);
@@ -272,8 +276,8 @@ if (content.isEmpty()) {
         URL url = new URL("https://neutrinoapi.net/bad-word-filter");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-        connection.setRequestProperty("User-ID", "rrr");
-        connection.setRequestProperty("API-Key", "3b8j6yd1XZ8igQbWMznsJsb3OcBOswEg932B9qmZNyvDaz2d");
+        connection.setRequestProperty("User-ID", "leoo10");
+        connection.setRequestProperty("API-Key", "HA5e6GzK9rJBTnI1y3Tk70Y9tdmbptkR8NOr6Oa70412SZHR");
 
         // Send request content
         connection.setDoOutput(true);
@@ -374,6 +378,8 @@ if (content.isEmpty()) {
 
 
     private void incrementBadWordCountForMembre() throws SQLDataException {
+    this.us = new UserService();
+    AcceuilAdminController ad = new AcceuilAdminController();
     int badWordCount = 0;
     this.membre=panier.getInstance().getU();
     if (membreBadWordCounts.containsKey(panier.getInstance().getId())) {
@@ -386,8 +392,23 @@ if (content.isEmpty()) {
     if (badWordCount >= 4) {
        // blockMembre();
       us.blouer(panier.getInstance().getId());
-       
-       
+      try {
+          Parent  root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            Stage myWindow = (Stage) commentSection.getScene().getWindow();
+            Scene sc = new Scene(root);
+            myWindow.setScene(sc);
+            myWindow.setTitle("back ");
+            //myWindow.setFullScreen(true);
+            myWindow.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+      
+      // Show alert
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText("You have been blocked from posting comments due to repeated use of inappropriate language.");
+        alert.showAndWait();
+
         sendEmail(this.membre.getEmail(), "You have been blocked from posting comments", "Oops.."+this.membre.getPrenom()+", You have been blocked from posting comments due to repeated use of inappropriate language.");
     } else if (badWordCount == 2) {
       
@@ -440,13 +461,13 @@ private void rater(ActionEvent event) {
     boolean hasRated = false;
     for (Rating rate : rates) {
         if (rate.getRate() == 1 && event.getSource() == likeButton) {
-            sp.deleteRate(post.getId(), this.membre.getId());
+            sp.deleteRate(post.getId(), panier.getInstance().getId());
             likeButton.setStyle("");
             dislikeButton.setDisable(false);
             displayRates();
             hasRated = true;
         } else if (rate.getRate() == -1 && event.getSource() == dislikeButton) {
-            sp.deleteRate(post.getId(), this.membre.getId());
+            sp.deleteRate(post.getId(), panier.getInstance().getId());
             dislikeButton.setStyle("");
             likeButton.setDisable(false);
             displayRates();
@@ -474,7 +495,7 @@ private void rater(ActionEvent event) {
             alert.setContentText("Thanks for rating this post.");
             alert.showAndWait();
         } else if (event.getSource() == dislikeButton) {
-            sp.addRate(post.getId(), this.membre.getId(), -1, now);
+            sp.addRate(post.getId(), panier.getInstance().getId(), -1, now);
             likeLabel.setText(String.valueOf(sp.getLikeCount(post.getId())));
             dislikeLabel.setText(String.valueOf(sp.getDislikeCount(post.getId())));
             dislikeButton.setStyle("-fx-background-color: blue;");
