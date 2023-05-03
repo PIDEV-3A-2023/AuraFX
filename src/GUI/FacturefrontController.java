@@ -42,6 +42,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import services.achatservice;
 import services.factureservice;
+import services.panier;
 import services.pdf;
 
 /**
@@ -71,7 +72,7 @@ public class FacturefrontController implements Initializable {
         load();
     }  
     public void load(){
-      List<facture> f=  fs.getbymem(16);
+      List<facture> f=  fs.getbymem(panier.getInstance().getId());
       ObservableList lp=FXCollections.observableArrayList(f);
       id.setCellValueFactory(new PropertyValueFactory<>("id"));
       montant.setCellValueFactory(new PropertyValueFactory<>("montant"));

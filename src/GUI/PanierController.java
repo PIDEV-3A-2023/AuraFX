@@ -9,6 +9,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import de.jensd.fx.glyphs.materialicons.MaterialIcon;
 import de.jensd.fx.glyphs.materialicons.MaterialIconView;
+import entities.User;
 import entities.achat;
 import entities.facture;
 import entities.membre;
@@ -55,6 +56,7 @@ import services.achatservice;
 import services.factureservice;
 import services.panier;
 import services.pdf;
+import utils.Sessions;
 
 /**
  * FXML Controller class
@@ -219,7 +221,7 @@ public class PanierController implements Initializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
         String formattedDate = localDate.format(formatter);
         Date date= Date.valueOf(localDate);
-        membre m=new membre(16, "ben nasr", "azer", "azerbennasr@gmail.com", "0000");
+        User m=new User(panier.getInstance().getId(),Sessions.getLoggedInUser().getNom(),Sessions.getLoggedInUser().getPrenom(),Sessions.getLoggedInUser().getEmail());
         
         facture f =new facture(m, panier.getInstance().calculerSommeTotale(), date);
         fs.ajouter(f);
@@ -235,7 +237,7 @@ public class PanierController implements Initializable {
         pdf.genererFacturesansouvrir(""+f.getId(), f.getMontant(), f.getDate(), la);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String message ="Bonjour Mr/Mme "+m.getNom()+" "+m.getPrenom()+" vos achats afféctuée le "+sdf.format(f.getDate())+"sont confirmés vous trouverez au dessous votre facture";
-        //EmailSender.with(m.getMail(), "Subject", message);   
+        EmailSender.with(m.getEmail(), "Subject", message);   
         try {
             //navigation
             Parent loader = FXMLLoader.load(getClass().getResource("facturefront.fxml"));

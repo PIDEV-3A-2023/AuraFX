@@ -5,6 +5,7 @@
  */
 package services;
 
+import entities.User;
 import entities.categorie;
 import entities.facture;
 import entities.membre;
@@ -58,7 +59,7 @@ try {
                 ResultSet s = ste.executeQuery(sql);
 
                 while (s.next()) {
-                    facture p = new facture(s.getInt("id"),new membre(s.getInt("membre_id")),s.getFloat("montant"),s.getDate("date") );
+                    facture p = new facture(s.getInt("id"),new User(s.getInt("membre_id")),s.getFloat("montant"),s.getDate("date") );
 
                     factures.add(p);
                 }
@@ -75,7 +76,7 @@ try {
                 ResultSet s = ste.executeQuery(sql);
 
                 while (s.next()) {
-                    facture p = new facture(s.getInt("id"),new membre(s.getInt("membre_id")),s.getFloat("montant"),s.getDate("date") );
+                    facture p = new facture(s.getInt("id"),new User(s.getInt("membre_id")),s.getFloat("montant"),s.getDate("date") );
 
                     factures.add(p);
                 }
@@ -96,7 +97,7 @@ try {
 
                      p.setId(s.getInt("id"));
                      p.setMontant(s.getFloat("montant"));
-                     p.setM(new membre(s.getInt("membre_id")));
+                     p.setM(new User(s.getInt("membre_id")));
                      p.setDate(s.getDate("date"));
 
                 }

@@ -1,12 +1,12 @@
 package GUI;
 
-import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import entities.Comment;
 import entities.membre;
 import entities.Post;
 import entities.Rating;
 import services.ServiceComment;
 import services.ServicePost;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
 import entities.User;
 import java.io.BufferedReader;
 import java.io.File;
@@ -56,6 +56,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import services.UserService;
+import services.panier;
 import utils.Sessions;
 
 
@@ -136,9 +137,8 @@ public class SinglePostController implements Initializable {
     private void displayComments() {
         commentSection.getChildren().clear();
         List<Comment> comments = sc.displayComments();
-        User loggedInMembre = (User) request.getSession().getAttribute("loggedInMembre");
         for (Comment comment : comments) {
-            if (comment.getPost().getId() == post.getId()&&comment.getMembre().getId()==Sessions.getLoggedInUser().getId()) {
+            if (comment.getPost().getId() == post.getId()||comment.getMembre().getId()==Sessions.getLoggedInUser().getId()) {
                 Label commentLabel = new Label(comment.getText());
                 Button deleteButton = new Button("Delete");
             deleteButton.setOnAction(e -> {
@@ -305,8 +305,10 @@ if (content.isEmpty()) {
 
             // this.post.addComment(c);
            // this.membre.setId(1);
-            c.setMembre(Sessions.getLoggedInUser());
-            sc.addComment(c);
+           User u =new User(panier.getInstance().getId());
+            c.setMembre(/*panier.getInstance().getU()*/u);
+            
+            sc.addComment(c,Sessions.getLoggedInUser().getId());
             commentTextArea.clear();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Comment saved successfully");

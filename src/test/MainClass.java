@@ -5,6 +5,7 @@
  */
 package test;
 
+import entities.User;
 import entities.achat;
 import entities.categorie;
 import entities.facture;
@@ -18,6 +19,7 @@ import services.EmailSender;
 import services.achatservice;
 import services.categorieservice;
 import services.factureservice;
+import services.panier;
 import services.pdf;
 import services.produitservice;
 import utils.MaConnection;
@@ -37,7 +39,7 @@ public class MainClass {
         //ps.modifier("azer", "ggg", "hhh", 0, 0, c,p);
         //ps.supprimer(p);
         //cs.modifier("zzz", "zzz", 0, c);
-        membre m =new membre(16);
+        User m =new User(16);
         LocalDate localDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yy-MM-dd");
         String formattedDate = localDate.format(formatter);
@@ -45,7 +47,7 @@ public class MainClass {
         facture f =new facture(1,m, 0, date);
         achatservice as=new achatservice();
         factureservice fs = new  factureservice();
-        System.out.print(as.achatparfact(1));
+       // System.out.print(as.achatparfact(1));
        // System.out.println(date);
        //achat a =new achat(f, m, p, 1, 5); 
       // as.ajouter(a);
@@ -55,6 +57,8 @@ public class MainClass {
       // pdf.genererFacturesansouvrir("0069", 50, date, as.achatparfact(41));
       // EmailSender.with("azerbennasr@gmail.com", "Subject", "Message body");
 //     EmailSender.sendEmail("azerbennasr@gmail.com", "Subject", "Message body");
-       
+        User user=new User(20);
+        panier.getInstance().setU(user);
+       System.out.print(panier.getInstance().getU());
     }
 }

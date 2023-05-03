@@ -25,6 +25,10 @@ public class User {
     private int isavtive ;
     private String adresse ;
 
+    public User(int i) {
+        id=i; //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getAdresse() {
         return adresse;
     }
@@ -124,6 +128,13 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "id=" + id + ", tel=" + tel + ", nom=" + nom + ", prenom=" + prenom + ", mdp=" + mdp + ", email=" + email + ", role=" + role +", datenai=" + datenai + ", image=" + image + ", isavtive=" + isavtive + '}';
+    }
+
+    public User(int id, String nom, String prenom, String email) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
     }
     
     
