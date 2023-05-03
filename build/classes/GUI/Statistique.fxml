@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="Anchor" stylesheets="@DESIGN.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Statistique">
+    <children>
+        <Button fx:id="BackA" layoutX="486.0" layoutY="14.0" onAction="#BackA" styleClass="Button" stylesheets="@DESIGN.css" text="Back" />
+      <Button fx:id="AURAHome" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#AURAHome" styleClass="Button" stylesheets="@DESIGN.css" text="AURA" />
+      <PieChart fx:id="pieChart" layoutY="46.0" prefHeight="354.0" prefWidth="600.0" />
+    </children>
+</AnchorPane>

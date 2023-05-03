@@ -1,0 +1,57 @@
+.combo-Box {
+    -fx-font-size: 14px; 
+    -fx-pref-width: 200px; 
+    -fx-background-color: #84b1c5; 
+    -fx-border-color: #3498DB; 
+    -fx-border-width: 1px; 
+    -fx-border-radius: 5px; 
+    -fx-text-fill: #000000; 
+}
+.text-Field {
+    -fx-font-size: 12px; 
+    -fx-pref-width: 200px; 
+    -fx-background-color: #84b1c5; 
+    -fx-border-color: #3498DB; 
+    -fx-border-width: 1px; 
+    -fx-border-radius: 5px; 
+    -fx-text-fill: #000000; 
+}
+.Button {
+    -fx-font-size: 14px; 
+    -fx-pref-width: 100px; 
+    -fx-background-color: #84b1c5; 
+    -fx-border-color: #3498DB; 
+    -fx-border-width: 1px; 
+    -fx-border-radius: 5px; 
+    -fx-text-fill: #000000; 
+}
+.Liste {
+    -fx-font-size: 14px;
+    -fx-background-color: #84b1c5; 
+    -fx-text-fill: #000000; 
+}
+.GTechAffe {
+    -fx-font-size: 14px; 
+    -fx-pref-width: 300px; 
+    -fx-background-color: #84b1c5; 
+    -fx-border-color: #3498DB; 
+    -fx-border-width: 1px; 
+    -fx-border-radius: 5px; 
+    -fx-text-fill: #000000; 
+}
+.Anchor{
+    -fx-background-color: #e9f3fa;
+}
+.DatePicker {
+    -fx-font-size: 14px; 
+    -fx-pref-width: 200px; 
+    -fx-background-color: #84b1c5; 
+    -fx-border-color: #3498DB; 
+    -fx-border-width: 1px; 
+    -fx-border-radius: 5px; 
+    -fx-text-fill: #000000; 
+}
+/*.iconButton {
+    -fx-font-size: 14px; 
+    -fx-graphic: url('/Users/issamfekih.if/Documents/GITHUB/AURADESKTOP/src/image/aura.png');
+}*/
