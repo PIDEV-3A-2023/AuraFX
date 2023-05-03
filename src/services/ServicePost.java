@@ -159,7 +159,7 @@ public class ServicePost implements InterfacePost{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 c.setPost(post);
-                User membre = Sessions.getLoggedInUser();
+                User membre = new User();
                 membre.setId(rs.getInt(3));
                 c.setMembre(membre);
                 c.setText(rs.getString("Text"));
@@ -251,7 +251,7 @@ public class ServicePost implements InterfacePost{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 r.setPost(post);
-               User membre = Sessions.getLoggedInUser();
+               User membre = new User();
                 membre.setId(rs.getInt(3));
                 r.setMembre(membre);
                 r.setRate(rs.getInt("rate"));
@@ -282,7 +282,7 @@ public class ServicePost implements InterfacePost{
                  Post post = new Post();
                 post.setId(rs.getInt(2));
                 r.setPost(post);
-                User membre = Sessions.getLoggedInUser();
+                User membre = new User();
                 membre.setId(rs.getInt(3));
                 r.setMembre(membre);
                 r.setRate(rs.getInt("rate"));

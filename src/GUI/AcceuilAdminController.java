@@ -120,13 +120,13 @@ public class AcceuilAdminController implements Initializable {
     @FXML
     private void blocker(ActionEvent event) throws SQLDataException {
         
-        us.blouer(table.getSelectionModel().getSelectedItem());
+        us.blouer(table.getSelectionModel().getSelectedItem().getId());
         Notifications.create().title("Sucess").text("Bloquer").position(Pos.BOTTOM_RIGHT).showError();
                 }
 
     @FXML
     private void Deblocker(ActionEvent event) throws SQLDataException {
-                us.deblouer(table.getSelectionModel().getSelectedItem());
+                us.deblouer(table.getSelectionModel().getSelectedItem().getId());
         Notifications.create().title("Sucess").text("User est Debloquer").position(Pos.BOTTOM_RIGHT).showError();
     }
 

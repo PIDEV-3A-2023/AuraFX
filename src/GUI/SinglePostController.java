@@ -111,7 +111,7 @@ public class SinglePostController implements Initializable {
         this.sc = new ServiceComment();
         this.sp = new ServicePost();
         
-       this.membre = Sessions.getLoggedInUser();
+     //  this.membre = panier.getInstance();
      
 
     }
@@ -137,9 +137,15 @@ public class SinglePostController implements Initializable {
     private void displayComments() {
         commentSection.getChildren().clear();
         List<Comment> comments = sc.displayComments();
+        
         for (Comment comment : comments) {
-            if (comment.getPost().getId() == post.getId()||comment.getMembre().getId()==Sessions.getLoggedInUser().getId()) {
-                Label commentLabel = new Label(comment.getText());
+            if (comment.getPost().getId() == post.getId()) {
+                 Label commentLabel = new Label(comment.getText());
+            VBox commentBox = new VBox(commentLabel);
+            commentBox.setSpacing(5);
+               commentSection.getChildren().add(commentBox);
+               System.out.println(panier.getInstance().getId());
+                if(comment.getMembre().getId()==panier.getInstance().getId()){
                 Button deleteButton = new Button("Delete");
             deleteButton.setOnAction(e -> {
                 
@@ -242,13 +248,12 @@ public class SinglePostController implements Initializable {
                     }
                 });
             });
-             HBox buttonBox = new HBox(deleteButton, updateButton);
+              HBox buttonBox = new HBox(deleteButton, updateButton);
             buttonBox.setSpacing(5);
-               VBox commentBox = new VBox(commentLabel, buttonBox);
-            commentBox.setSpacing(5);
-            commentSection.getChildren().add(commentBox);
-            }
+                 commentSection.getChildren().add(buttonBox);
+        }
         
+            }
         }
     }
 
@@ -308,7 +313,7 @@ if (content.isEmpty()) {
            User u =new User(panier.getInstance().getId());
             c.setMembre(/*panier.getInstance().getU()*/u);
             
-            sc.addComment(c,Sessions.getLoggedInUser().getId());
+            sc.addComment(c);
             commentTextArea.clear();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Comment saved successfully");
@@ -370,22 +375,23 @@ if (content.isEmpty()) {
 
     private void incrementBadWordCountForMembre() throws SQLDataException {
     int badWordCount = 0;
-    if (membreBadWordCounts.containsKey(this.membre.getId())) {
-        badWordCount = membreBadWordCounts.get(this.membre.getId());
+    this.membre=panier.getInstance().getU();
+    if (membreBadWordCounts.containsKey(panier.getInstance().getId())) {
+        badWordCount = membreBadWordCounts.get(panier.getInstance().getId());
     }
     badWordCount++;
-    membreBadWordCounts.put(this.membre.getId(), badWordCount);
+    membreBadWordCounts.put(panier.getInstance().getId(), badWordCount);
     
     // Check if member should be blocked
     if (badWordCount >= 4) {
        // blockMembre();
-      us.blouer(Sessions.getLoggedInUser());
+      us.blouer(panier.getInstance().getId());
        
        
         sendEmail(this.membre.getEmail(), "You have been blocked from posting comments", "Oops.."+this.membre.getPrenom()+", You have been blocked from posting comments due to repeated use of inappropriate language.");
     } else if (badWordCount == 2) {
       
-   // System.out.println(membre.getEmail()); 
+    System.out.println(membre.getEmail()); 
         sendWarningEmail(this.membre.getEmail());
     }
 }
@@ -403,7 +409,7 @@ if (content.isEmpty()) {
     }
     
    private void displayRates() {
-    List<Rating> rates = sp.isRatedByUser(post.getId(), this.membre.getId());
+    List<Rating> rates = sp.isRatedByUser(post.getId(), panier.getInstance().getId());
    // List<Rating> allRates = sp.rates(post.getId());
     boolean hasRated = false;
     
@@ -430,7 +436,7 @@ if (content.isEmpty()) {
 @FXML
 private void rater(ActionEvent event) {
     Date now = new Date();
-    List<Rating> rates = sp.isRatedByUser(post.getId(), this.membre.getId());
+    List<Rating> rates = sp.isRatedByUser(post.getId(), panier.getInstance().getId());
     boolean hasRated = false;
     for (Rating rate : rates) {
         if (rate.getRate() == 1 && event.getSource() == likeButton) {
@@ -450,13 +456,13 @@ private void rater(ActionEvent event) {
 
     if (!hasRated) {
         if (event.getSource() == likeButton) {
-            sp.addRate(post.getId(), this.membre.getId(), 1, now);
+            sp.addRate(post.getId(), panier.getInstance().getId(), 1, now);
             likeLabel.setText(String.valueOf(sp.getLikeCount(post.getId())));
             dislikeLabel.setText(String.valueOf(sp.getDislikeCount(post.getId())));
             likeButton.setStyle("-fx-background-color: blue;");
             dislikeButton.setDisable(true);
             likeButton.setOnAction(e -> {
-                sp.deleteRate(post.getId(), this.membre.getId());
+                sp.deleteRate(post.getId(), panier.getInstance().getId());
                 likeLabel.setText(String.valueOf(sp.getLikeCount(post.getId())));
                 dislikeLabel.setText(String.valueOf(sp.getDislikeCount(post.getId())));
                 likeButton.setStyle("");
@@ -474,7 +480,7 @@ private void rater(ActionEvent event) {
             dislikeButton.setStyle("-fx-background-color: blue;");
             likeButton.setDisable(true);
             dislikeButton.setOnAction(e -> {
-                sp.deleteRate(post.getId(), this.membre.getId());
+                sp.deleteRate(post.getId(), panier.getInstance().getId());
                 likeLabel.setText(String.valueOf(sp.getLikeCount(post.getId())));
                 dislikeLabel.setText(String.valueOf(sp.getDislikeCount(post.getId())));
                 dislikeButton.setStyle("");

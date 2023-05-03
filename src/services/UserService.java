@@ -137,7 +137,7 @@ public class UserService {
     }
            
            
-    public boolean blouer(User user) throws SQLDataException {
+    public boolean blouer(int id) throws SQLDataException {
                
                 String query = "UPDATE `membre` SET `is_active`=? WHERE `id` = ?";
 		PreparedStatement res;
@@ -145,7 +145,7 @@ public class UserService {
                 res = cnx.prepareStatement(query);
 
         res.setInt(1,0);
-        res.setInt(2, user.getId());
+        res.setInt(2, id);
                 res.executeUpdate();
                 return true;
                 
@@ -155,7 +155,7 @@ public class UserService {
         }
     }
     
-        public boolean deblouer(User user) throws SQLDataException {
+        public boolean deblouer(int id) throws SQLDataException {
                
                 String query = "UPDATE `membre` SET `is_active`=? WHERE `id` = ?";
 		PreparedStatement res;
@@ -163,7 +163,7 @@ public class UserService {
                 res = cnx.prepareStatement(query);
 
         res.setInt(1,1);
-        res.setInt(2, user.getId());
+        res.setInt(2, id);
                 res.executeUpdate();
                 return true;
                 

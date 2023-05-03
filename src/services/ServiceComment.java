@@ -101,7 +101,7 @@ public class ServiceComment implements InterfaceComment{
                 post.setId(rs.getInt(2));
                 c.setPost(post);
                User membre = new User();
-               membre = Sessions.getLoggedInUser();
+             //  membre = Sessions.getLoggedInUser();
                 membre.setId(rs.getInt(3));
                 c.setMembre(membre);
                 c.setText(rs.getString("Text"));
@@ -131,7 +131,7 @@ public class ServiceComment implements InterfaceComment{
                 Post post = new Post();
                 post.setId(rs.getInt(2));
                 c.setPost(post);
-               User membre = Sessions.getLoggedInUser();
+               User membre = new User();
                 membre.setId(rs.getInt(3));
                 c.setMembre(membre);
                 c.setText(rs.getString("Text"));
