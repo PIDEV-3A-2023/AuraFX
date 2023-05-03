@@ -25,6 +25,10 @@ public class User {
     private int isavtive ;
     private String adresse ;
 
+    public User(int i) {
+        id=i; //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getAdresse() {
         return adresse;
     }

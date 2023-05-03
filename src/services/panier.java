@@ -5,6 +5,7 @@
  */
 package services;
 
+import entities.User;
 import entities.produit;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +17,16 @@ import java.util.Map;
 public class panier {
     private static panier instance;
     private Map<produit,Integer> p;
+    private User u;
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     private panier() {
         p = new HashMap<>();
     }
@@ -62,6 +73,11 @@ public class panier {
     }
     return somme;
 }
-
+public void setU(User user){
+    u=user;
+}
+public User getU(){
+    return u;
+}
     
 }

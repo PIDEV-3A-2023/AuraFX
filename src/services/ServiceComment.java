@@ -39,7 +39,7 @@ public class ServiceComment implements InterfaceComment{
             
           
             stm.setInt(1, c.getPost().getId());
-            stm.setInt(2, /*c.getMembre().getId()15*/id);
+            stm.setInt(2, c.getMembre().getId());
             stm.setString(3, c.getText());
             stm.setDate(4,  new java.sql.Date(c.getDate().getTime()));
            

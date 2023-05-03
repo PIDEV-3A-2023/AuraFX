@@ -56,6 +56,7 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import services.UserService;
+import services.panier;
 import utils.Sessions;
 
 
@@ -304,7 +305,9 @@ if (content.isEmpty()) {
 
             // this.post.addComment(c);
            // this.membre.setId(1);
-            c.setMembre(Sessions.getLoggedInUser());
+           User u =new User(panier.getInstance().getId());
+            c.setMembre(/*panier.getInstance().getU()*/u);
+            
             sc.addComment(c,Sessions.getLoggedInUser().getId());
             commentTextArea.clear();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);

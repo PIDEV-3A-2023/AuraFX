@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import org.controlsfx.control.Notifications;
 import org.mindrot.jbcrypt.BCrypt;
 import services.UserService;
+import services.panier;
 import utils.Sessions;
 
 /**
@@ -62,6 +63,8 @@ public class LoginController implements Initializable {
                        User U = new User();
                        UserService daoU = new UserService();
                        User result = daoU.Login(email.getText());
+                       panier.getInstance().setU(result);
+                       panier.getInstance().setId(result.getId());
                           System.out.println(result);
                        if (result == null){
 
