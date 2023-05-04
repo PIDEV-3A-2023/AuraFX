@@ -103,7 +103,7 @@ public class BaseController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        
+       
     }
 
     @FXML
@@ -149,5 +149,9 @@ public class BaseController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
+<<<<<<< Updated upstream
     
+=======
+   
+>>>>>>> Stashed changes
 }
