@@ -33,6 +33,7 @@ public class NewFXMain extends Application {
             // Parent root=FXMLLoader.load(getClass().getResource("ShowCommentBack.fxml"));
            //   Parent root=FXMLLoader.load(getClass().getResource("postBack.fxml"));
            //  Parent root=FXMLLoader.load(getClass().getResource("login.fxml"));
+          // Parent root=FXMLLoader.load(getClass().getResource("base.fxml"));
            Parent root=FXMLLoader.load(getClass().getResource("base.fxml"));
            //    Parent root=FXMLLoader.load(getClass().getResource("alluser.fxml"));
            //Parent root=FXMLLoader.load(getClass().getResource(".fxml"));
