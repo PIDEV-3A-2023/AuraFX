@@ -30,11 +30,11 @@ public class NewFXMain extends Application {
         try {
           //  Parent root=FXMLLoader.load(getClass().getResource("produitfront.fxml"));
             // Parent root=FXMLLoader.load(getClass().getResource("postfront.fxml"));
-            // Parent root=FXMLLoader.load(getClass().getResource("ShowCommentBack.fxml"));
+             //Parent root=FXMLLoader.load(getClass().getResource("ShowCommentBack.fxml"));
            //   Parent root=FXMLLoader.load(getClass().getResource("postBack.fxml"));
-           //  Parent root=FXMLLoader.load(getClass().getResource("login.fxml"));
+             Parent root=FXMLLoader.load(getClass().getResource("login.fxml"));
           // Parent root=FXMLLoader.load(getClass().getResource("base.fxml"));
-           Parent root=FXMLLoader.load(getClass().getResource("base.fxml"));
+              //Parent root = FXMLLoader.load(getClass().getResource("afficherproduit.fxml"));
            //    Parent root=FXMLLoader.load(getClass().getResource("alluser.fxml"));
            //Parent root=FXMLLoader.load(getClass().getResource(".fxml"));
             Scene scene = new Scene(root);

@@ -2,8 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,12 +12,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="863.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.BaseController">
+<BorderPane prefHeight="863.0" prefWidth="1260.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.BaseFrontController">
    <top>
       <AnchorPane style="-fx-background-color: #fff;" BorderPane.alignment="CENTER">
          <children>
             <HBox accessibleRole="BUTTON" alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="22.0" spacing="20.0" AnchorPane.bottomAnchor="22.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0">
                <children>
+                  <Button mnemonicParsing="false" onAction="#back" text="Logout" />
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      
                   </ImageView>
@@ -36,7 +37,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" prefHeight="81.0" prefWidth="291.0" style="-fx-background-color: #00A2D3;" text="Admin Panel" textFill="WHITE">
+            <Label alignment="CENTER" prefHeight="81.0" prefWidth="291.0" style="-fx-background-color: #00A2D3;" text="User Panel" textFill="WHITE">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -62,7 +63,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="gestionProduitButton" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionProduit" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@newCascadeStyleSheet.css">
+            <HBox fx:id="gestionProduitButton" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionProduit" prefHeight="50.0" prefWidth="292.0" styleClass="btns" stylesheets="@newCascadeStyleSheet.css">
                <padding>
                   <Insets left="10.0" />
                </padding>
@@ -80,12 +81,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="GestionCategorieButon" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionCategorie" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@newCascadeStyleSheet.css">
+            <HBox fx:id="GestionCategorieButon" alignment="CENTER_LEFT" layoutX="10.0" layoutY="95.0" onMouseClicked="#LoadGestionCategorie" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@newCascadeStyleSheet.css">
                <padding>
                   <Insets left="10.0" />
                </padding>
                <children>
-                  <Label stylesheets="@newCascadeStyleSheet.css" text="Gestion Categorie" textFill="#7c8184">
+                  <Label stylesheets="@newCascadeStyleSheet.css" text="gestion Catégorie" textFill="#7c8184">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
@@ -94,10 +95,14 @@
                      </padding>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
+           
             <HBox fx:id="GestionFactureButon" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionFacture" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@newCascadeStyleSheet.css">
                <padding>
                   <Insets left="10.0" />
@@ -121,7 +126,7 @@
                   <Insets left="10.0" />
                </padding>
                <children>
-                  <Label stylesheets="@newCascadeStyleSheet.css" text="Gestion technicien" textFill="#7c8184">
+                  <Label stylesheets="@newCascadeStyleSheet.css" text="Gestion Technicien" textFill="#7c8184">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
@@ -139,25 +144,7 @@
                   <Insets left="10.0" />
                </padding>
                <children>
-                  <Label stylesheets="@newCascadeStyleSheet.css" text="Gestion affectation" textFill="#7c8184">
-                     <font>
-                        <Font name="Calibri Light" size="18.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </HBox>
-            <HBox fx:id="GestionUserButon" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionUser" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@newCascadeStyleSheet.css">
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
-               <children>
-                  <Label stylesheets="@newCascadeStyleSheet.css" text="Gestion user" textFill="#7c8184">
+                  <Label stylesheets="@newCascadeStyleSheet.css" text="Gestion Affectations" textFill="#7c8184">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
@@ -188,12 +175,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </HBox>
-            <HBox fx:id="GestionCommentButon" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionComment" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@newCascadeStyleSheet.css">
+            <HBox fx:id="profil" alignment="CENTER_LEFT" onMouseClicked="#LoadGestionUser" prefHeight="50.0" prefWidth="300.0" styleClass="btns" stylesheets="@newCascadeStyleSheet.css">
                <padding>
                   <Insets left="10.0" />
                </padding>
                <children>
-                  <Label stylesheets="@newCascadeStyleSheet.css" text="Gestion Comment" textFill="#7c8184">
+                  <Label stylesheets="@newCascadeStyleSheet.css" text="Profil" textFill="#7c8184">
                      <font>
                         <Font name="Calibri Light" size="18.0" />
                      </font>
@@ -210,6 +197,6 @@
       </VBox>
    </left>
    <center>
-      <StackPane fx:id="AnchorePaneLayout" stylesheets="@newCascadeStyleSheet.css" BorderPane.alignment="CENTER" />
+      <StackPane fx:id="AnchorePaneLayout" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

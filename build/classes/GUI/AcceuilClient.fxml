@@ -30,7 +30,7 @@
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
-      <Button fx:id="test" layoutX="794.0" layoutY="572.0" mnemonicParsing="false" onAction="#topost" text="test" />
+     
       <TextField fx:id="idd" layoutX="639.0" layoutY="54.0" />
    </children>
 </AnchorPane>

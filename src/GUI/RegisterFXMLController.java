@@ -19,8 +19,13 @@ import java.util.ResourceBundle;
 import java.util.function.UnaryOperator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -28,6 +33,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import javafx.util.converter.IntegerStringConverter;
 import org.controlsfx.control.Notifications;
@@ -94,7 +100,7 @@ public class RegisterFXMLController implements Initializable {
     }    
 
     @FXML
-    private void Enregistrer(ActionEvent event) {
+    private void Enregistrer(ActionEvent event) throws IOException {
         
          User u = new User ();
          
@@ -131,6 +137,20 @@ public class RegisterFXMLController implements Initializable {
         u.setMdp(pass);
         u.setRole("[\"ROLE_USER\"]");
         us.Registre(u);
+         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText("You have been registered successfully!");
+        alert.showAndWait();
+
+        
+       // datePicker.setValue(null);
+     
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+         Parent root = loader.load();
+         Scene scene = new Scene(root);
+         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+         stage.setTitle("Login");
+         stage.setScene(scene);
+         stage.show(); 
         
                           }
         

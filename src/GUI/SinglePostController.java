@@ -419,7 +419,7 @@ if (content.isEmpty()) {
 
     @FXML
     private void back(ActionEvent event) throws IOException {
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("PostFront.fxml"));
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("baseFront.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

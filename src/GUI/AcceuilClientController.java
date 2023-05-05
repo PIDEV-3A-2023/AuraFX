@@ -186,15 +186,6 @@ public class AcceuilClientController implements Initializable {
         return true; // Résultat OK   
     }
 
-    @FXML
-    private void topost(ActionEvent event) {
-        try {
-            //navigation
-            Parent loader = FXMLLoader.load(getClass().getResource("postfront.fxml"));
-            test.getScene().setRoot(loader);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+   
     
 }

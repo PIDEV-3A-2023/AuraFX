@@ -19,9 +19,7 @@
             <HBox accessibleRole="BUTTON" alignment="CENTER_RIGHT" layoutX="1080.0" layoutY="22.0" spacing="20.0" AnchorPane.bottomAnchor="22.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0">
                <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/USER.png" />
-                     </image>
+                     
                   </ImageView>
                   <Label fx:id="ConnectedUserNameLabel" alignment="CENTER" prefHeight="37.0" text="User" HBox.hgrow="ALWAYS">
                      <font>
@@ -51,7 +49,7 @@
       </AnchorPane>
    </top>
    <left>
-      <VBox prefHeight="874.0" prefWidth="292.0" styleClass="sidebar" stylesheets="@style.css" BorderPane.alignment="CENTER">
+      <VBox prefHeight="874.0" prefWidth="292.0" styleClass="sidebar" stylesheets="@newCascadeStyleSheet.css" BorderPane.alignment="CENTER">
          <children>
             <HBox alignment="CENTER_LEFT">
                <padding>

@@ -207,7 +207,7 @@ public class PanierController implements Initializable {
     private void back(ActionEvent event) {
         try {
             //navigation
-            Parent loader = FXMLLoader.load(getClass().getResource("produitfront.fxml"));
+            Parent loader = FXMLLoader.load(getClass().getResource("basefront.fxml"));
             
             back.getScene().setRoot(loader);
         } catch (IOException ex) {

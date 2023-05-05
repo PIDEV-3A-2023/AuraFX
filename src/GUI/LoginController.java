@@ -93,7 +93,7 @@ public class LoginController implements Initializable {
                         Parent root;
                         IdOfUser=result.getId();
                         try {
-                            root = FXMLLoader.load(getClass().getResource("AcceuilClient.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("baseFront.fxml"));
                             Stage myWindow = (Stage) email.getScene().getWindow();
                             Scene sc = new Scene(root);
                             myWindow.setScene(sc);
@@ -109,7 +109,7 @@ public class LoginController implements Initializable {
                         Parent root;
                         IdOfUser=0;
                         try {
-                            root = FXMLLoader.load(getClass().getResource("AllUser.fxml"));
+                            root = FXMLLoader.load(getClass().getResource("base.fxml"));
                             Stage myWindow = (Stage) email.getScene().getWindow();
                             Scene sc = new Scene(root);
                             myWindow.setScene(sc);
