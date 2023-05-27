@@ -158,7 +158,7 @@ public class ListeAffectationsController implements Initializable {
     private void statA(ActionEvent event) throws IOException{
         
         refresh();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Stat.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Statistique.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

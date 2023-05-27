@@ -3,42 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/utils/DataSource.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/services/UserService.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/NewFXMain.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/style.css</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/SinglePostController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/base.fxml</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/AcceuilClient.fxml</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/services/ServicePost.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/entities/User.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/DESIGN.css</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/AddcatController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/StatsController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/AllUser.fxml</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/baseFront.fxml</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/PostAddController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/AcceuilAdminController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/PostBackController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/entities/Post.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/SinglefactureController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/EstimationController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/services/ServiceComment.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/AcceuilClientController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/services/InterfaceComment.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/LoginController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/EditPostController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/entities/Comment.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/SingleproduitController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/CarbonMotorBikeController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/FacturefrontController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/BaseFrontController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/BaseController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/services/pdf.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/RegisterFXMLController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/utils/Sessions.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/GUI/PanierController.java</file>
-            <file>file:/C:/Users/MSI/Desktop/AuraFX/src/services/panier.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/FacturefrontController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/BaseController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/PanierController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/ListeAffectationsController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/FrontAffectationsController.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/Email.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/NewFXMain.java</file>
+            <file>file:/C:/Users/azerb/Desktop/AuraFX/src/GUI/BaseFrontController.java</file>
         </group>
     </open-files>
 </project-private>
